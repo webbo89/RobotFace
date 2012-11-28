@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="../../lib/paper.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			// Get a reference to the canvas object
+			var canvas = document.getElementById('myCanvas');
+			// Create an empty project and a view for the canvas for us:
+			paper.setup(canvas);
+			var path = new paper.Path();
+			var start = new paper.Point(100, 100);
+			path.moveTo(start);
+			path.strokeColor = 'black';
+			// Note that the plus operator on Point objects does not work in
+			// JavaScript. Instead, we need to call the add() function on it:
+			path.lineTo(start.add([ 100, -50 ]));
+		}
+	</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>

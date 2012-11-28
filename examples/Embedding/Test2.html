@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="../../lib/paper.js"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+		var path = new Path();
+		path.strokeColor = 'black';
+		var start = new Point(100, 100);
+		path.moveTo(start);
+		// Note that the plus operator on Point objects does not work in
+		// JavaScript. Instead, we need to call the add() function on it:
+		path.lineTo(start + [ 100, -50 ]);
+	</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
