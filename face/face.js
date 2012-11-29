@@ -90,7 +90,7 @@ rF  = {};
     rF.pupilStyle = {
         circleStyle: {
             fillColor: new RgbColor(0, 0, 0),
-            strokeColor: new RgbColor(0 ,0 , 1),
+            strokeColor: new RgbColor(0.458 ,0.584 , 0.749),
             strokeWidth: 5
         }
     };
@@ -100,7 +100,6 @@ rF  = {};
         rF.leftEye.socket.style = rF.eyeStyle.circleStyle;
         rF.leftEye.pupil = new Path.Circle([400,150], 10);
         rF.leftEye.pupil.style = rF.pupilStyle.circleStyle;
-
     rF.rightEye  = {};
         rF.rightEye.socket = new Path.Circle([560,150], 70);
         rF.rightEye.socket.style = rF.eyeStyle.circleStyle;
@@ -157,6 +156,28 @@ rEmotions  = {};
             rEmotions.happy.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
             rEmotions.happy.eyebrow.rightobj.add(new Point((480+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-10));
 
+
+//***** joyous ***** //
+    rEmotions.joyous = {
+        mouth: {},
+        eyebrow: {}
+    };
+        rEmotions.joyous.mouth.toplip = new Path();
+            rEmotions.joyous.mouth.toplip.incr = 20;
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 0*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-(rEmotions.joyous.mouth.toplip.incr*5)) );
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 0.9*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.joyous.mouth.toplip.incr*1)) );
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 1.8*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.joyous.mouth.toplip.incr*5)) );
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 3.2*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.joyous.mouth.toplip.incr*5)) );
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 4.1*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.joyous.mouth.toplip.incr*1)) );
+            rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-(rEmotions.joyous.mouth.toplip.incr*5)) );
+        rEmotions.joyous.eyebrow.leftobj = new Path();
+            rEmotions.joyous.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.joyous.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
+            rEmotions.joyous.eyebrow.leftobj.add(new Point((480-rF.eyebrow.facewidth)+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
+        rEmotions.joyous.eyebrow.rightobj = new Path();
+            rEmotions.joyous.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.joyous.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
+            rEmotions.joyous.eyebrow.rightobj.add(new Point((480+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
 //***** SAD ******* //
     rEmotions.sad = {
         mouth: {},
@@ -199,6 +220,27 @@ rEmotions  = {};
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[0].point + [0,-5]));
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-10]));
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
+//*** ANTICIPATION *//
+    rEmotions.anticipation = {
+        mouth: {},
+        eyebrow: {}
+    };
+        rEmotions.anticipation.mouth.toplip = new Path();
+        rEmotions.anticipation.mouth.toplip.incr = 10;
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX, rF.mouth.startY-rEmotions.anticipation.mouth.toplip.incr) );
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 1*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+5) );
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 2*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+5) );
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 3*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+5) );
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 4*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+5) );
+                rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-rEmotions.anticipation.mouth.toplip.incr) );
+        rEmotions.anticipation.eyebrow.leftobj = new Path();
+            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[0].point + [0,0]));
+            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[1].point + [0,5]));
+            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[2].point + [0,0]));
+        rEmotions.anticipation.eyebrow.rightobj = new Path();
+            rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[0].point + [0,-5]));
+            rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-20]));
+            rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
 //************************* rEmotions: EMOTION COORDINATE DEFINITIONS END ********************************//
 
     tData = {};
@@ -290,7 +332,7 @@ var talking = false;
 function onFrame(event) {
     timer++;
     if (timer%70==0) {
-        var rand = Math.round(Math.random()*4);
+        var rand = Math.round(Math.random()*5);
         switch(rand){
             case 0:
                 destinationF = rEmotions.sad;
@@ -312,12 +354,22 @@ function onFrame(event) {
                 //console.log("FACE:confused");
                  text.content = "FACE:confused";
             break;
+            case 4:
+                destinationF = rEmotions.anticipation;
+                //console.log("FACE:confused");
+                 text.content = "FACE:anticipation";
+            break;
+            case 5:
+                destinationF = rEmotions.joyous;
+                //console.log("FACE:confused");
+                 text.content = "FACE:joyous";
+            break;
         }
 
     }
 
     if (Math.round(timer/400)%2==1) {
-        talking = true;
+        talking = false;
         text2.content = 'Talking';
     } else {
         talking = false;
@@ -385,6 +437,15 @@ function onFrame(event) {
         }
         rF.eyebrow.leftobj.smooth();
         rF.eyebrow.rightobj.smooth();
+
+        // Blink logic
+        if (timer%500==1) {
+                rF.leftEye.socket.scale(1, 0.2);
+                rF.rightEye.socket.scale(1, 0.2);
+        } else if(timer%500==3) {
+                rF.leftEye.socket.scale(1, 5);
+                rF.rightEye.socket.scale(1, 5);
+        }
 
      //       //console.log( rF.motion.step);
      //       //console.log( rF.motion.on);
