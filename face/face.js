@@ -210,7 +210,32 @@ var talkGestures = new Array();
     talkGestures[1] = new Array(new Point(tData.center+[-10,10]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-15]),new Point(tData.center+[+30,-15]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,10]));
     talkGestures[2] = new Array(new Point(tData.center+[-10,20]), new Point(tData.center+[-75,-10]),new Point(tData.center+[-40,-30]),new Point(tData.center+[+40,-30]),new Point(tData.center+[+75,-10]), new Point(tData.center+[+10,20]));
 
-
+    tData.bubble = new Path();
+        tData.bubble.add(new Point([180,330]));
+        tData.bubble.add(new Point([40,330]));
+        tData.bubble.add(new Point([10,300]));
+        tData.bubble.add(new Point([10,200]));
+        tData.bubble.add(new Point([40,170]));
+        tData.bubble.add(new Point([240,170]));
+        tData.bubble.add(new Point([270,200]));
+        tData.bubble.add(new Point([270,300]));
+        tData.bubble.add(new Point([230,330]));
+        tData.bubble.smooth();
+        tData.bubble.add(new Point([330,370])); //speech point
+        tData.bubble.closed = true;
+        tData.bubble.style = {
+            strokeColor: new GrayColor(0.8),
+            strokeWidth: 9,
+            strokeCap: 'round'
+        }
+        tData.bubble.talk = new PointText(new Point(30, 210));
+        tData.bubble.talk.content = "Hello guys!";
+        tData.bubble.talk.characterStyle = {
+                fontSize: 20,
+                fillColor: 'black'
+            };
+        tData.bubble.talk.visible = false;
+        tData.bubble.visible = false;
 
 
 var center = new Point(480, 80);
@@ -291,7 +316,7 @@ function onFrame(event) {
 
     }
 
-    if (Math.round(timer/400)%2==0) {
+    if (Math.round(timer/400)%2==1) {
         talking = true;
         text2.content = 'Talking';
     } else {
@@ -318,9 +343,13 @@ function onFrame(event) {
                 //console.log(i+":"+talkGestures[][i]);
                 //console.log(talkGestures);
                 //
+                tData.bubble.visible = true;
+                tData.bubble.talk.visible = true;
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
+                tData.bubble.talk.visible = false;
+                tData.bubble.visible = false;
                 var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/rF.motion.steptotal;
             }
