@@ -20,37 +20,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="face2.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webbo89/face2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="0" selection-start="6094" selection-end="6094" vertical-scroll-proportion="-30.94">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="face3.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Webbo89/face3.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="316" column="46" selection-start="15781" selection-end="15781" vertical-scroll-proportion="0.48314607">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webbo89/main.html">
+        <entry file="file://$PROJECT_DIR$/face/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="42" selection-start="233" selection-end="233" vertical-scroll-proportion="-3.9230769">
+            <state line="6" column="40" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="face.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Webbo89/face.js">
+      <file leaf-file-name="face.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/face/face.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="23" selection-start="168" selection-end="179" vertical-scroll-proportion="0.0">
+            <state line="321" column="61" selection-start="16017" selection-end="16017" vertical-scroll-proportion="0.6171955">
               <folding />
             </state>
           </provider>
@@ -71,6 +53,8 @@
         <option value="$PROJECT_DIR$/Webbo89/face2.js" />
         <option value="$PROJECT_DIR$/Webbo89/main.html" />
         <option value="$PROJECT_DIR$/Webbo89/face3.js" />
+        <option value="$PROJECT_DIR$/face/main.html" />
+        <option value="$PROJECT_DIR$/face/face.js" />
       </list>
     </option>
   </component>
@@ -155,6 +139,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -169,7 +154,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PaperJS" />
+              <option name="myItemId" value="RobotFace" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -179,17 +164,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PaperJS" />
+              <option name="myItemId" value="RobotFace" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Webbo89" />
+              <option name="myItemId" value="face" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -316,79 +300,30 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Webbo89/face2.js">
+    <entry file="file://$PROJECT_DIR$/face/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="39" selection-start="5577" selection-end="5577" vertical-scroll-proportion="0.0">
+        <state line="6" column="40" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face.js">
+    <entry file="file://$PROJECT_DIR$/face/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="23" selection-start="168" selection-end="179" vertical-scroll-proportion="0.0">
+        <state line="284" column="26" selection-start="14254" selection-end="14254" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/test2.html">
+    <entry file="file://$PROJECT_DIR$/face/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="210" selection-end="221" vertical-scroll-proportion="0.0">
+        <state line="6" column="40" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face.js">
+    <entry file="file://$PROJECT_DIR$/face/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="53" selection-start="1921" selection-end="1921" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/test2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="210" selection-end="221" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="44" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/test2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="210" selection-end="221" vertical-scroll-proportion="0.10580913">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="0" selection-start="6094" selection-end="6094" vertical-scroll-proportion="-30.94">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="42" selection-start="233" selection-end="233" vertical-scroll-proportion="-3.9230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="23" selection-start="168" selection-end="179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Webbo89/face3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="316" column="46" selection-start="15781" selection-end="15781" vertical-scroll-proportion="0.48314607">
+        <state line="321" column="61" selection-start="16017" selection-end="16017" vertical-scroll-proportion="0.6171955">
           <folding />
         </state>
       </provider>

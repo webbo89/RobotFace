@@ -201,6 +201,14 @@ rEmotions  = {};
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
 //************************* rEmotions: EMOTION COORDINATE DEFINITIONS END ********************************//
 
+    tData = {};
+    tData.start = new Point(rF.mouth.startX, rF.mouth.startY);
+    tData.center = new Point(rF.mouth.startX+(rF.mouth.width/2), rF.mouth.startY);
+
+var talkGestures = new Array();
+    talkGestures[0] = new Array(new Point(tData.center+[-10,20]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-30]),new Point(tData.center+[+30,-30]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,20]));
+    talkGestures[1] = new Array(new Point(tData.center+[-10,10]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-15]),new Point(tData.center+[+30,-15]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,10]));
+    talkGestures[2] = new Array(new Point(tData.center+[-10,20]), new Point(tData.center+[-75,-10]),new Point(tData.center+[-40,-30]),new Point(tData.center+[+40,-30]),new Point(tData.center+[+75,-10]), new Point(tData.center+[+10,20]));
 
 
 
@@ -240,12 +248,18 @@ text.paragraphStyle.justification = 'left';
 text.characterStyle.fontSize = 20;
 text.fillColor = 'black';
 text.content = 'Not Started';
+var text2 = new PointText([50,100]);
+text2.paragraphStyle.justification = 'left';
+text2.characterStyle.fontSize = 20;
+text2.fillColor = 'black';
+text2.content = 'Not Talking';
 
 
 
 var originF = rF;
 var destinationF = rF;
 var timer = 0;
+var talking = false;
 
 //************************* ANIMATION FRAME SECTION ******************************************************//
 function onFrame(event) {
@@ -277,6 +291,16 @@ function onFrame(event) {
 
     }
 
+    if (Math.round(timer/400)%2==0) {
+        talking = true;
+        text2.content = 'Talking';
+    } else {
+        talking = false;
+        text2.content = 'Not Talking';
+    }
+
+
+
     if (!rF.motion.on || rF.motion.step != 0) {
         if (!rF.motion.on) {
             //console.log("setting up transition");
@@ -286,13 +310,24 @@ function onFrame(event) {
         rF.motion.on = true;
         }
 
+
         for (var i = 0; i <= rF.mouth.points; i++) {
             var segment = rF.mouth.toplip.segments[i];
-            var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
-            var vectorB = vector/rF.motion.steptotal;
+
+            if (talking) {
+                //console.log(i+":"+talkGestures[][i]);
+                //console.log(talkGestures);
+                //
+                var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
+                var vectorB = vector/(rF.motion.steptotal/1.5);
+            } else {
+                var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
+                var vectorB = vector/rF.motion.steptotal;
+            }
+
             segment.point = segment.point + vectorB;
         }
-            rF.mouth.toplip.smooth();
+        rF.mouth.toplip.smooth();
 
         for (var i = 0; i <= 2; i++) {
             var leftsegment = rF.eyebrow.leftobj.segments[i];
