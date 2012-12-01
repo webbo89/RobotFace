@@ -17,7 +17,7 @@ process.stdin.setEncoding('utf8');
 
 process.stdin.on('data', function (CMDinsert) {
     CMDinsert = CMDinsert.replace(/(\r\n|\n|\r)/gm,"");
-    var commands = CMDinsert.split(",");
+    var commands = CMDinsert.split(";");
 
     //console.log(splitResult);
         console.log(commands);

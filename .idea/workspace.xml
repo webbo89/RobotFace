@@ -34,7 +34,7 @@
           <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/face/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="48" column="31" selection-start="1314" selection-end="1314" vertical-scroll-proportion="0.0">
+                <state line="23" column="32" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -43,7 +43,7 @@
           <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="93" column="57" selection-start="3704" selection-end="3704" vertical-scroll-proportion="0.7256098">
+                <state line="19" column="37" selection-start="504" selection-end="504" vertical-scroll-proportion="0.18140244">
                   <folding />
                 </state>
               </provider>
@@ -56,7 +56,7 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="13" selection-start="480" selection-end="480" vertical-scroll-proportion="0.0">
+                <state line="15" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -65,7 +65,7 @@
           <file leaf-file-name="face.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/face/face.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="423" column="37" selection-start="22891" selection-end="22891" vertical-scroll-proportion="0.5873786">
+                <state line="319" column="42" selection-start="19697" selection-end="19697" vertical-scroll-proportion="-0.8802589">
                   <folding />
                 </state>
               </provider>
@@ -96,7 +96,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="-1928" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
@@ -299,7 +299,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -412,21 +412,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/face/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="423" column="37" selection-start="22891" selection-end="22891" vertical-scroll-proportion="0.5873786">
+        <state line="319" column="42" selection-start="19697" selection-end="19697" vertical-scroll-proportion="-0.8802589">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="31" selection-start="1314" selection-end="1314" vertical-scroll-proportion="0.0">
+        <state line="23" column="32" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="57" selection-start="3704" selection-end="3704" vertical-scroll-proportion="0.7256098">
+        <state line="19" column="37" selection-start="504" selection-end="504" vertical-scroll-proportion="0.18140244">
           <folding />
         </state>
       </provider>
