@@ -14,6 +14,8 @@ mouth.style = {
 
 //******************************** rF: ROBOT FACE DEFINITIONS ********************************************//
 rF  = {};
+    rF.currentEmotion = "default";
+    rF.talkingState = false;
     rF.mouth  = {};
         rF.mouth.points = 5;
         rF.mouth.width = 320;
@@ -270,15 +272,24 @@ var talkGestures = new Array();
             strokeWidth: 9,
             strokeCap: 'round'
         }
-        tData.bubble.talk = new PointText(new Point(30, 210));
-        tData.bubble.talk.content = "Hello guys!";
-        tData.bubble.talk.characterStyle = {
+        tData.bubble.talkstyle = {
                 fontSize: 20,
                 fillColor: 'black'
             };
+        tData.bubble.talk = new PointText(new Point(30, 210));
+        tData.bubble.talk.content = "Hello guys!";
+        tData.bubble.talk.characterStyle = tData.bubble.talkstyle;
         tData.bubble.talk.visible = false;
         tData.bubble.visible = false;
-
+        tData.bubble.talk2 = new PointText(new Point(30, 240));
+        tData.bubble.talk2.characterStyle = tData.bubble.talkstyle;
+        tData.bubble.talk2.visible = true;
+        tData.bubble.talk3 = new PointText(new Point(30, 270));
+        tData.bubble.talk3.characterStyle = tData.bubble.talkstyle;
+        tData.bubble.talk3.visible = true;
+        tData.bubble.talk4 = new PointText(new Point(30, 300));
+        tData.bubble.talk4.characterStyle = tData.bubble.talkstyle;
+        tData.bubble.talk4.visible = true;
 
 var center = new Point(480, 80);
 
@@ -326,51 +337,51 @@ text2.content = 'Not Talking';
 var originF = rF;
 var destinationF = rF;
 var timer = 0;
-var talking = false;
+//var talking = false;
+var human = 'default';
 
 //************************* ANIMATION FRAME SECTION ******************************************************//
 function onFrame(event) {
     timer++;
-    if (timer%70==0) {
-        var rand = Math.round(Math.random()*5);
-        switch(rand){
-            case 0:
+    //if (timer%70==0) {
+        //var rand = Math.round(Math.random()*5);
+        switch(rF.currentEmotion){
+            case "sad":
                 destinationF = rEmotions.sad;
                 //console.log("FACE:sad");
                  text.content = "FACE:sad";
             break;
-            case 1:
+            case "happy":
                 destinationF = rEmotions.happy;
                 //console.log("FACE:happy");
                  text.content = "FACE:happy";
             break;
-            case 2:
+            case "default":
                 destinationF = rEmotions.default;
                 //console.log("FACE:default");
                  text.content = "FACE:default";
             break;
-            case 3:
+            case "confused":
                 destinationF = rEmotions.confused;
                 //console.log("FACE:confused");
                  text.content = "FACE:confused";
             break;
-            case 4:
+            case "anticipation":
                 destinationF = rEmotions.anticipation;
                 //console.log("FACE:confused");
                  text.content = "FACE:anticipation";
             break;
-            case 5:
+            case "joyous":
                 destinationF = rEmotions.joyous;
                 //console.log("FACE:confused");
                  text.content = "FACE:joyous";
             break;
         }
 
-    }
+   // }
 
     if (Math.round(timer/400)%2==1) {
-        talking = false;
-        text2.content = 'Talking';
+      //  talking = true;
     } else {
         talking = false;
         text2.content = 'Not Talking';
@@ -387,19 +398,21 @@ function onFrame(event) {
         rF.motion.on = true;
         }
 
-
         for (var i = 0; i <= rF.mouth.points; i++) {
             var segment = rF.mouth.toplip.segments[i];
 
-            if (talking) {
+            if (rF.talkingState) {
                 //console.log(i+":"+talkGestures[][i]);
                 //console.log(talkGestures);
                 //
+                        text2.content = 'Talking';
+
                 tData.bubble.visible = true;
                 tData.bubble.talk.visible = true;
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
+                        text2.content = 'Not Talking';
                 tData.bubble.talk.visible = false;
                 tData.bubble.visible = false;
                 var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
