@@ -42,9 +42,16 @@ process.stdin.on('data', function (CMDinsert) {
                         face.emit('message', {message: command[1]})
                     console.log("message sent");
                 break;
+                case "debug":
+                case "d":
+                        face.emit('debug', {debug: command[1]})
+                    console.log("debug state sent");
+                break;
                 case "test":
                     console.log("Testing Sending Commands + Face");
                     face.emit('emotionchange', {emotion: "default"});
+                    face.emit('talking', {talking: "false"})
+                    face.emit('debug', {debug: "true"})
                     console.log("Sent emotion:default for 3 seconds");
 
                     setTimeout(function() {
@@ -83,8 +90,12 @@ process.stdin.on('data', function (CMDinsert) {
                         },14000);
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "default"});
+                        face.emit('talking', {talking: "false"})
+                        face.emit('debug', {debug: "false"})
                     console.log("Sent emotion:default for 3 seconds");
+
                         },16000);
+
                 break;
            }
     }

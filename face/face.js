@@ -16,6 +16,7 @@ mouth.style = {
 rF  = {};
     rF.currentEmotion = "default";
     rF.talkingState = false;
+    //rF.debug = true;
     rF.mouth  = {};
         rF.mouth.points = 5;
         rF.mouth.width = 320;
@@ -283,32 +284,49 @@ var talkGestures = new Array();
         tData.bubble.visible = false;
         tData.bubble.talk2 = new PointText(new Point(30, 240));
         tData.bubble.talk2.characterStyle = tData.bubble.talkstyle;
-        tData.bubble.talk2.visible = true;
+        tData.bubble.talk2.visible = false;
         tData.bubble.talk3 = new PointText(new Point(30, 270));
         tData.bubble.talk3.characterStyle = tData.bubble.talkstyle;
-        tData.bubble.talk3.visible = true;
+        tData.bubble.talk3.visible = false;
         tData.bubble.talk4 = new PointText(new Point(30, 300));
         tData.bubble.talk4.characterStyle = tData.bubble.talkstyle;
-        tData.bubble.talk4.visible = true;
+        tData.bubble.talk4.visible = false;
 
 var center = new Point(480, 80);
 
 // Intitialise
-
+    //*** STatUS Output info **//
+     rF.text = new PointText([50,50]);
+    rF.text.paragraphStyle.justification = 'left';
+    rF.text.characterStyle.fontSize = 20;
+    rF.text.fillColor = 'black';
+    rF.text.content = 'Not Started';
+     rF.text2 = new PointText([50,100]);
+    rF.text2.paragraphStyle.justification = 'left';
+    rF.text2.characterStyle.fontSize = 20;
+    rF.text2.fillColor = 'black';
+    rF.text2.content = 'Not Talking';
 
 
 //Selections for debug
-if (rF.selected) {
-    rF.mouth.toplip.selected = true;
+rF.debug =  function(status) {
+    rF.mouth.toplip.selected = status;
     //rF.rightEye.socket.segments[1].selected = true;
     //rF.rightEye.socket.segments[2].selected = true;
-    rF.rightEye.socket.selected = true;
-    rF.leftEye.socket.selected = true;
-    rF.nose.obj.selected = true;
-    rF.eyebrow.leftobj.selected = true;
-    rF.eyebrow.rightobj.selected = true;
+    rF.rightEye.socket.selected = status;
+    rF.leftEye.socket.selected = status;
+    rF.nose.obj.selected = status;
+    rF.eyebrow.leftobj.selected = status;
+    rF.eyebrow.rightobj.selected = status;
 
-    var path = new Path.Line([480,0], [480,700]);
+
+
+    rF.text.visible = status;
+    rF.text2.visible = status;
+};
+rF.debug(false);
+
+    /*var path = new Path.Line([480,0], [480,700]);
     path.strokeColor = 'black';
     var path2 = new Path.Line([330,0], [330,700]);
     path2.strokeColor = 'black';
@@ -317,20 +335,10 @@ if (rF.selected) {
     var path4 = new Path.Line([430,0], [430,700]);
     path4.strokeColor = 'black';
     var path5 = new Path.Line([530,0], [530,700]);
-    path5.strokeColor = 'black';
-}
+    path5.strokeColor = 'black';*/
 
-//*** STatUS Output info **//
-var text = new PointText([50,50]);
-text.paragraphStyle.justification = 'left';
-text.characterStyle.fontSize = 20;
-text.fillColor = 'black';
-text.content = 'Not Started';
-var text2 = new PointText([50,100]);
-text2.paragraphStyle.justification = 'left';
-text2.characterStyle.fontSize = 20;
-text2.fillColor = 'black';
-text2.content = 'Not Talking';
+
+
 
 
 
@@ -349,32 +357,32 @@ function onFrame(event) {
             case "sad":
                 destinationF = rEmotions.sad;
                 //console.log("FACE:sad");
-                 text.content = "FACE:sad";
+                 rF.text.content = "FACE:sad";
             break;
             case "happy":
                 destinationF = rEmotions.happy;
                 //console.log("FACE:happy");
-                 text.content = "FACE:happy";
+                 rF.text.content = "FACE:happy";
             break;
             case "default":
                 destinationF = rEmotions.default;
                 //console.log("FACE:default");
-                 text.content = "FACE:default";
+                 rF.text.content = "FACE:default";
             break;
             case "confused":
                 destinationF = rEmotions.confused;
                 //console.log("FACE:confused");
-                 text.content = "FACE:confused";
+                 rF.text.content = "FACE:confused";
             break;
             case "anticipation":
                 destinationF = rEmotions.anticipation;
                 //console.log("FACE:confused");
-                 text.content = "FACE:anticipation";
+                 rF.text.content = "FACE:anticipation";
             break;
             case "joyous":
                 destinationF = rEmotions.joyous;
                 //console.log("FACE:confused");
-                 text.content = "FACE:joyous";
+                 rF.text.content = "FACE:joyous";
             break;
         }
 
@@ -384,7 +392,7 @@ function onFrame(event) {
       //  talking = true;
     } else {
         talking = false;
-        text2.content = 'Not Talking';
+        rF.text2.content = 'Not Talking';
     }
 
 
@@ -405,15 +413,22 @@ function onFrame(event) {
                 //console.log(i+":"+talkGestures[][i]);
                 //console.log(talkGestures);
                 //
-                        text2.content = 'Talking';
+                        rF.text2.content = 'Talking';
 
                 tData.bubble.visible = true;
                 tData.bubble.talk.visible = true;
+                tData.bubble.talk2.visible = true;
+                tData.bubble.talk3.visible = true;
+                tData.bubble.talk4.visible = true;
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
-                        text2.content = 'Not Talking';
+                rF.text2.content = 'Not Talking';
                 tData.bubble.talk.visible = false;
+                tData.bubble.talk2.visible = false;
+                tData.bubble.talk3.visible = false;
+                tData.bubble.talk4.visible = false;
+
                 tData.bubble.visible = false;
                 var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/rF.motion.steptotal;

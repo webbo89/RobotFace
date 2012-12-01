@@ -26,9 +26,19 @@ face.on('talking', function (data) {
     //console.log(data);
 });
 
+face.on('debug', function (data) {
+    console.log(data);
+    if (data.debug.replace(/(\r\n|\n|\r)/gm,"")=="true") {
+        rF.debug(true);
+    } else {
+        rF.debug(false);
+    }
+    //console.log(data);
+});
+
 face.on('message', function (data) {
     console.log(data);
-    //PaperJS doesnt seem to allow multiline textboxes so pretty terrible hack:
+    //PaperJS doesn't seem to allow multiline textboxes so pretty terrible hack:
     var str = data.message.replace(/(\r\n|\n|\r)/gm,"=");
     console.log(str);
     var brk = "=";
@@ -37,10 +47,10 @@ face.on('message', function (data) {
     var regex = '.{1,' +width+ '}(\\s|$)' + (cut ? '|.{' +width+ '}|.+$' : '|\\S+?(\\s|$)');
     str =  str.match( RegExp(regex, 'g') ).join( brk );
     var lines = str.split("=");
-    tData.bubble.talk.content = lines[0];
-    tData.bubble.talk2.content = lines[1];
-    tData.bubble.talk3.content = lines[2];
-    tData.bubble.talk4.content = lines[3];
+    tData.bubble.talk.content = lines[0]||"";
+    tData.bubble.talk2.content = lines[1]||"";
+    tData.bubble.talk3.content = lines[2]||"";
+    tData.bubble.talk4.content = lines[3]||"";
 });
 
 /*
