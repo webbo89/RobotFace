@@ -34,7 +34,7 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="36" column="0" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.32626262">
+                <state line="30" column="0" selection-start="712" selection-end="712" vertical-scroll-proportion="0.5151515">
                   <folding />
                 </state>
               </provider>
@@ -47,7 +47,7 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
+                <state line="46" column="34" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -56,7 +56,7 @@
           <file leaf-file-name="face.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/face/face.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="505" column="35" selection-start="26480" selection-end="26480" vertical-scroll-proportion="0.5415318">
+                <state line="505" column="40" selection-start="26451" selection-end="26451" vertical-scroll-proportion="0.394822">
                   <folding />
                 </state>
               </provider>
@@ -438,13 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/face/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="10" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.0">
@@ -452,9 +445,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="34" selection-start="1275" selection-end="1275" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/face/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="505" column="35" selection-start="26480" selection-end="26480" vertical-scroll-proportion="0.5415318">
+        <state line="505" column="40" selection-start="26451" selection-end="26451" vertical-scroll-proportion="0.394822">
           <folding />
         </state>
       </provider>

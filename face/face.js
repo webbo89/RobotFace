@@ -502,7 +502,11 @@ function onFrame(event) {
 
 //************************* ANIMATION PUPILS START **************************************************//
        var leftPupil = rF.leftEye.pupil;
-       var leftPupilVector = leftPupil.point -rF.leftEye.pupil.destination;
+            var test = new Point (10,10);
+            rF.leftEye.pupil.position =  rF.leftEye.pupil.position + test;
+      //  console.log(leftPupil.center + test);
+        console.log(rF.leftEye.pupil);
+             /*  var leftPupilVector = leftPupil.point -rF.leftEye.pupil.destination;
         console.log(leftPupilVector);
             if (leftPupilVector.length > 0.1) {
                 var vectorA = leftPupilVector/rF.motion.steptotal;
@@ -510,7 +514,7 @@ function onFrame(event) {
             } else {
                  rF.leftEye.pupil.segments[0]  =  rF.leftEye.center + rF.leftEye.pupil.destination;
             }
-
+*/
 
 //************************* ANIMATION PUPILS END **************************************************//
 
