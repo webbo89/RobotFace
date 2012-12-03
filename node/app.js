@@ -54,6 +54,7 @@ process.stdin.on('data', function (CMDinsert) {
                     console.log("debug state sent");
                 break;
                 case "test":
+                    var speed = command[1] || 1000;
                     console.log("Testing Sending Commands + Face");
                     face.emit('emotionchange', {emotion: "default"});
                     face.emit('talking', {talking: "false"})
@@ -62,45 +63,53 @@ process.stdin.on('data', function (CMDinsert) {
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "happy"});
+                        face.emit('eyeUpdate', {eyeData: "100:89:6"})
                     console.log("Sent emotion:happy for 3 seconds");
-                        },2000);
+                        },2*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "sad"});
+                        face.emit('eyeUpdate', {eyeData: "100:45:6"})
                     console.log("Sent emotion:sad for 3 seconds");
-                        },4000);
+                        },4*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "joyous"});
+                        face.emit('eyeUpdate', {eyeData: "100:90:6"})
                     console.log("Sent emotion:joyous for 3 seconds");
-                        },6000);
+                        },6*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "anticipation"});
+                        face.emit('eyeUpdate', {eyeData: "1000:80:6"})
                     console.log("Sent emotion:anticipation for 3 seconds");
-                        },8000);
+                        },8*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "confused"});
+                        face.emit('eyeUpdate', {eyeData: "500:20:6"})
                     console.log("Sent emotion:confused for 3 seconds");
-                        },10000);
+                        },1*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "default"});
+                        face.emit('eyeUpdate', {eyeData: "100:20:6"})
                     console.log("Sent emotion:default for 3 seconds");
-                        },12000);
+                        },12*speed);
 
                     setTimeout(function() {
+                        face.emit('message', {message: "hello! I'm in test mode..."})
+                        face.emit('eyeUpdate', {eyeData: "100:89:6"})
                         face.emit('talking', {talking: "true"})
                     console.log("Sent talking for 3 seconds");
-                        },14000);
+                        },14*speed);
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "default"});
                         face.emit('talking', {talking: "false"})
                         face.emit('debug', {debug: "false"})
                     console.log("Sent emotion:default for 3 seconds");
 
-                        },16000);
+                        },16*speed);
 
                 break;
            }

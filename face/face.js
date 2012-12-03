@@ -505,6 +505,13 @@ function onFrame(event) {
         }
         rF.mouth.toplip.smooth();
 
+
+        if (rF.motion.step == rF.motion.steptotal) {
+            rF.motion.on = false;
+            rF.motion.step = 0;
+        }
+        rF.motion.step++;
+    }
         for (var i = 0; i <= 2; i++) {
             var leftsegment = rF.eyebrow.leftobj.segments[i];
             var leftvector = destinationFace.eyebrow.leftobj.segments[i].point - originFace.eyebrow.leftobj.segments[i].point;
@@ -567,15 +574,6 @@ function onFrame(event) {
 
 //************************* ANIMATION PUPILS END **************************************************//
 
-
-        if (rF.motion.step == rF.motion.steptotal) {
-     //       //console.log("last step");
-
-            rF.motion.on = false;
-            rF.motion.step = 0;
-        }
-        rF.motion.step++;
-    }
 
 
 
