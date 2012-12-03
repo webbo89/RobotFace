@@ -5,6 +5,10 @@ var app = express()
   , server = require('http').createServer(app)
   , io = io.listen(server);
 
+app.configure(function(){
+    app.use(express.static(__dirname + "\\..\\" + 'public'));
+});
+console.log(__dirname+"\\..\\");
 server.listen(3000);
 
 io.sockets.on('connection', function (socket) {
