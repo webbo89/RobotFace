@@ -15,6 +15,35 @@ var face = io.of('/face').on('connection', function(socket) {});
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
+function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
+	var pi = Math.PI;
+	var bigTri = {};
+	var leftEyeTri = {};
+	var rightEyeTri = {};
+
+	// convert angle to radians
+	var angle = angleDeg*(180/pi);
+
+	// big triangle calculations
+	bigTri.hyp = distance;
+	bigTri.opp = bigTri.hyp * Math.sin(angleR);
+	bigTri.adj = bigTri.hye * Math.cos(angleR);
+
+	// left eye triangle calculations
+	leftEyeTri.opp = bigTri.opp - eyegap;
+	leftEyeTri.adj = bigTri.opp;
+	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
+	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
+
+	// right eye triangle calculations
+	rightEyeTri.opp = bigTri.opp + eyegap;
+	rightEyeTri.adj = bigTri.opp;
+	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
+	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
+
+	return({"righteye" : rightEyeTri.move, "lefteye" : leftEyeTri.move});
+}
+
 process.stdin.on('data', function (CMDinsert) {
     CMDinsert = CMDinsert.replace(/(\r\n|\n|\r)/gm,"");
     var commands = CMDinsert.split(";");
