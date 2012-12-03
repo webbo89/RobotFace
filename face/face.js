@@ -127,15 +127,20 @@ rF  = {};
     };
 
     rF.leftEye  = {};
+        rF.leftEye.center  = new Point ([400,150]);
         rF.leftEye.socket = new Path.Circle([400,150], 70);
         rF.leftEye.socket.style = rF.eyeStyle.circleStyle;
         rF.leftEye.pupil = new Path.Circle([400,150], 10);
         rF.leftEye.pupil.style = rF.pupilStyle.circleStyle;
+        rF.leftEye.pupil.destination  = new Point ([50,50]);
     rF.rightEye  = {};
+        rF.rightEye.center  = new Point ([560,150]);
         rF.rightEye.socket = new Path.Circle([560,150], 70);
         rF.rightEye.socket.style = rF.eyeStyle.circleStyle;
         rF.rightEye.pupil = new Path.Circle([560,150], 10);
         rF.rightEye.pupil.style = rF.pupilStyle.circleStyle;
+        rF.rightEye.pupil.destination  = new Point ([50,50]);
+
 
     rF.selected = false;
 
@@ -494,6 +499,21 @@ function onFrame(event) {
 
      //       //console.log( rF.motion.step);
      //       //console.log( rF.motion.on);
+
+//************************* ANIMATION PUPILS START **************************************************//
+       var leftPupil = rF.leftEye.pupil;
+       var leftPupilVector = leftPupil.point -rF.leftEye.pupil.destination;
+        console.log(leftPupilVector);
+            if (leftPupilVector.length > 0.1) {
+                var vectorA = leftPupilVector/rF.motion.steptotal;
+                rF.leftEye.pupil.segments[0]  =  leftPupil.point + vectorA;
+            } else {
+                 rF.leftEye.pupil.segments[0]  =  rF.leftEye.center + rF.leftEye.pupil.destination;
+            }
+
+
+//************************* ANIMATION PUPILS END **************************************************//
+
 
         if (rF.motion.step == rF.motion.steptotal) {
      //       //console.log("last step");
