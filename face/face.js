@@ -1,65 +1,64 @@
-// Eye movement calculation function
-calc = {};
-calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
-	var pi = Math.PI;
-	var bigTri = {};
-	var leftEyeTri = {};
-	var rightEyeTri = {};
-    var mult = 7;
-	// convert angle to radians
-	var angle = angleDeg*(pi/180);
-
-	// big triangle calculations
-	bigTri.hyp = distance;
-	bigTri.opp = bigTri.hyp * Math.sin(angle);
-
-	bigTri.adj = bigTri.hyp * Math.cos(angle);
-
-	// left eye triangle calculations
-	leftEyeTri.opp = bigTri.opp - eyegap;
-	leftEyeTri.adj = bigTri.adj;
-	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
-	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
-
-	// right eye triangle calculations
-	rightEyeTri.opp = bigTri.opp + eyegap;
-	rightEyeTri.adj = bigTri.adj;
-	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
-	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
-    //mock
-    leftEyeTri.move = leftEyeTri.move*3.779527564*mult;
-    rightEyeTri.move = rightEyeTri.move*3.779527564*mult;
-
-    //console.log(leftEyeTri.move);
-   // console.log(rightEyeTri.move);
-
-	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
-}
-
-console.log(calc.EyeMovement(100, 20, 3, 1.8));
-
-// The amount of segment points we want to create:
-var amount = 5;
-
-// The maximum height of the wave:
-var height = 60;
-
-// Create a new path and style it:
-var mouth = new Path();
-mouth.style = {
-    strokeColor: new GrayColor(0.8),
-    strokeWidth: 30,
-    strokeCap: 'round'
-};
-
 //******************************** rF: ROBOT FACE DEFINITIONS ********************************************//
 rF  = {};
     rF.currentEmotion = "default";
     rF.talkingState = false;
     rF.status = {};
+    rF.center = new Point(480, 0);
 
-// Intitialise
-    //*** STatUS Output info **//
+    rF.mouth  = {};
+        rF.mouth.points = 5;
+        rF.mouth.width = 320;
+        rF.mouth.startY = rF.center.y + 390;
+
+    rF.nose = {};
+        rF.nose = rF.center + new Point (0,250);
+        rF.nose.width = 15;
+        rF.nose.height = 20;
+        rF.nose.style = {
+            strokeColor: new GrayColor(0.8),
+            strokeWidth: 30,
+            strokeCap: 'round'
+        };
+
+    rF.eyebrow = {};
+        rF.eyebrow.lowY = 20;
+        rF.eyebrow.highY = 10;
+        rF.eyebrow.width = 100;
+        rF.eyebrow.facewidth = 150; //Half width
+        rF.eyebrow.faceheight = 70;
+        rF.eyebrow.style = {
+            strokeColor: new GrayColor(0.8),
+            strokeWidth: 30,
+            strokeCap: 'round'
+         };
+
+    rF.eye = {}
+        rF.eye.gap = 80;
+        rF.eye.radius = 70;
+        rF.eye.height = rF.center.y + 150;
+        rF.eye.style = {
+            circleStyle: {
+                fillColor: new RgbColor(1, 1, 1),
+                strokeColor: new GrayColor(0.8),
+                strokeWidth: 5
+        }};
+        rF.eye.pupilStyle = {
+            circleStyle: {
+                fillColor: new RgbColor(0, 0, 0),
+                strokeColor: new RgbColor(0.458 ,0.584 , 0.749),
+                strokeWidth: 5
+        }};
+
+    rF.motion = {};
+        rF.motion.on = false;
+        rF.motion.step = 0;
+        rF.motion.steptotal = 10;
+
+//******************************** rF: ROBOT FACE DEFINITIONS END ****************************************//
+
+//******************************** rF: ROBOT FACE COORDINATE INITIALISE *********************************//
+
+// Initialise Status alerts
     rF.status.emotion = new PointText([50,50]);
         rF.status.emotion.paragraphStyle.justification = 'left';
         rF.status.emotion.characterStyle.fontSize = 20;
@@ -76,69 +75,34 @@ rF  = {};
         rF.status.eyeData.fillColor = 'black';
         rF.status.eyeData.content = 'No eye data';
 
-    //rF.debug = true;
-    rF.mouth  = {};
-        rF.mouth.points = 5;
-        rF.mouth.width = 320;
-        rF.mouth.startY = 390;
-        rF.mouth.startX = 320;
+        rF.mouth.startX = rF.center.x - (rF.mouth.width/2);
         rF.mouth.toplip = new Path();
         for (var i = 0; i <= rF.mouth.points; i++) {
             rF.mouth.toplip.add(new Point(rF.mouth.startX + i*(rF.mouth.width/rF.mouth.points), rF.mouth.startY) );
         }
-        rF.motion = {};
-        rF.motion.on = false;
-        rF.motion.step = 0;
-        rF.motion.steptotal = 10;
 
-        rF.nose = {};
-        rF.nose.topX = 480;
-        rF.nose.topY = 250;
-        rF.nose.width = 15;
-        rF.nose.height = 20;
         rF.nose.obj = new Path();
-            rF.nose.obj.add(new Point(rF.nose.topX-rF.nose.width, rF.nose.topY));
-            rF.nose.obj.add(new Point(rF.nose.topX-(rF.nose.width/5), rF.nose.topY-rF.nose.height));
-            rF.nose.obj.add(new Point(rF.nose.topX+(rF.nose.width/5), rF.nose.topY-rF.nose.height));
-            rF.nose.obj.add(new Point(rF.nose.topX+rF.nose.width, rF.nose.topY));
-        rF.nose.obj.style = {
-            strokeColor: new GrayColor(0.8),
-            strokeWidth: 30,
-            strokeCap: 'round'
-         };
+            rF.nose.obj.add(new Point(rF.nose.x-rF.nose.width, rF.nose.y));
+            rF.nose.obj.add(new Point(rF.nose.x-(rF.nose.width/5), rF.nose.y-rF.nose.height));
+            rF.nose.obj.add(new Point(rF.nose.x+(rF.nose.width/5), rF.nose.y-rF.nose.height));
+            rF.nose.obj.add(new Point(rF.nose.x+rF.nose.width, rF.nose.y));
+        rF.nose.obj.style = rF.nose.style;
 
         rF.nose.obj.closed = true;
         rF.nose.obj.smooth();
 
-    rF.eyes  = function(angle, distance, height) {
-        rF.eyes.angle  = angle;
-        rF.eyes.distance  = distance;
-        rF.eyes.height  = height;
-        rF.status.eyeData.content = "a:"+angle+" d:"+distance+" h:"+height;
-        };
-    rF.eyes(90, 5, 10);
 
-        rF.eyebrow = {};
-        rF.eyebrow.lowY = 20;
-        rF.eyebrow.highY = 10;
-        rF.eyebrow.width = 100;
-        rF.eyebrow.facewidth = 150; //Half width
-        rF.eyebrow.faceheight = 70;
-        rF.eyebrow.style = {
-            strokeColor: new GrayColor(0.8),
-            strokeWidth: 30,
-            strokeCap: 'round'
-         };
+
         rF.eyebrow.leftobj = new Path();
-            rF.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth, rF.eyebrow.faceheight));
-            rF.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
-            rF.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rF.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth, rF.eyebrow.faceheight));
+            rF.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
+            rF.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
         rF.eyebrow.leftobj.style = rF.eyebrow.style;
         rF.eyebrow.leftobj.smooth();
         rF.eyebrow.rightobj = new Path();
-            rF.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth, rF.eyebrow.faceheight));
-            rF.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
-            rF.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rF.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth, rF.eyebrow.faceheight));
+            rF.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
+            rF.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
         rF.eyebrow.rightobj.style = rF.eyebrow.style;
         rF.eyebrow.rightobj.smooth();
 
@@ -150,35 +114,20 @@ rF  = {};
          };
         rF.mouth.toplip.smooth();
 
-    rF.eyeSize = new Size(100, 100);
-    rF.eyeStyle = {
-        circleStyle: {
-            fillColor: new RgbColor(1, 1, 1),
-            strokeColor: new GrayColor(0.8),
-            strokeWidth: 5
-        }
-    };
-    rF.pupilStyle = {
-        circleStyle: {
-            fillColor: new RgbColor(0, 0, 0),
-            strokeColor: new RgbColor(0.458 ,0.584 , 0.749),
-            strokeWidth: 5
-        }
-    };
 
     rF.leftEye  = {};
-        rF.leftEye.center  = new Point ([400,150]);
-        rF.leftEye.socket = new Path.Circle([400,150], 70);
-        rF.leftEye.socket.style = rF.eyeStyle.circleStyle;
-        rF.leftEye.pupil = new Path.Circle([400,150], 10);
-        rF.leftEye.pupil.style = rF.pupilStyle.circleStyle;
+        rF.leftEye.center  = new Point ([rF.center.x - rF.eye.gap,rF.eye.height]);
+        rF.leftEye.socket = new Path.Circle(rF.leftEye.center, rF.eye.radius);
+        rF.leftEye.socket.style = rF.eye.style.circleStyle;
+        rF.leftEye.pupil = new Path.Circle(rF.leftEye.center, 10);
+        rF.leftEye.pupil.style = rF.eye.pupilStyle.circleStyle;
         rF.leftEye.pupil.destination  = rF.leftEye.center;
     rF.rightEye  = {};
-        rF.rightEye.center  = new Point ([560,150]);
-        rF.rightEye.socket = new Path.Circle([560,150], 70);
-        rF.rightEye.socket.style = rF.eyeStyle.circleStyle;
-        rF.rightEye.pupil = new Path.Circle([560,150], 10);
-        rF.rightEye.pupil.style = rF.pupilStyle.circleStyle;
+        rF.rightEye.center  = new Point ([rF.center.x + rF.eye.gap,rF.eye.height]);
+        rF.rightEye.socket = new Path.Circle(rF.rightEye.center, rF.eye.radius);
+        rF.rightEye.socket.style = rF.eye.style.circleStyle;
+        rF.rightEye.pupil = new Path.Circle(rF.rightEye.center, 10);
+        rF.rightEye.pupil.style = rF.eye.pupilStyle.circleStyle;
         rF.rightEye.pupil.destination  = rF.rightEye.center;
 
     rF.eyeUpdate  = function (leftEye, rightEye) {
@@ -188,8 +137,9 @@ rF  = {};
     };
 
     rF.selected = false;
+//************************** rF: ROBOT FACE COORDINATE INITIALISE END ***********************************//
 
-//******************************** rF: ROBOT FACE DEFINITIONS END ****************************************//
+
 
 //************************* rEmotions: EMOTION COORDINATE DEFINITIONS ************************************//
 rEmotions  = {};
@@ -205,13 +155,13 @@ rEmotions  = {};
             }
 
         rEmotions.default.eyebrow.leftobj = new Path();
-            rEmotions.default.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth, rF.eyebrow.faceheight));
-            rEmotions.default.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
-            rEmotions.default.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rEmotions.default.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth, rF.eyebrow.faceheight));
+            rEmotions.default.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
+            rEmotions.default.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
         rEmotions.default.eyebrow.rightobj = new Path();
-            rEmotions.default.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth, rF.eyebrow.faceheight));
-            rEmotions.default.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
-            rEmotions.default.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rEmotions.default.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth, rF.eyebrow.faceheight));
+            rEmotions.default.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY/2)));
+            rEmotions.default.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)));
 
 
 
@@ -229,13 +179,13 @@ rEmotions  = {};
             rEmotions.happy.mouth.toplip.add(new Point(rF.mouth.startX + 4.1*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.happy.mouth.toplip.incr*1)) );
             rEmotions.happy.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-(rEmotions.happy.mouth.toplip.incr*5)) );
         rEmotions.happy.eyebrow.leftobj = new Path();
-            rEmotions.happy.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)));
-            rEmotions.happy.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
-            rEmotions.happy.eyebrow.leftobj.add(new Point((480-rF.eyebrow.facewidth)+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-10));
+            rEmotions.happy.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rEmotions.happy.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.happy.eyebrow.leftobj.add(new Point((rF.center.x-rF.eyebrow.facewidth)+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-10));
         rEmotions.happy.eyebrow.rightobj = new Path();
-            rEmotions.happy.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)));
-            rEmotions.happy.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
-            rEmotions.happy.eyebrow.rightobj.add(new Point((480+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-10));
+            rEmotions.happy.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)));
+            rEmotions.happy.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.happy.eyebrow.rightobj.add(new Point((rF.center.x+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-10));
 
 
 //***** joyous ***** //
@@ -252,13 +202,13 @@ rEmotions  = {};
             rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 4.1*(rF.mouth.width/rF.mouth.points), rF.mouth.startY+(rEmotions.joyous.mouth.toplip.incr*1)) );
             rEmotions.joyous.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-(rEmotions.joyous.mouth.toplip.incr*5)) );
         rEmotions.joyous.eyebrow.leftobj = new Path();
-            rEmotions.joyous.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
-            rEmotions.joyous.eyebrow.leftobj.add(new Point(480-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
-            rEmotions.joyous.eyebrow.leftobj.add(new Point((480-rF.eyebrow.facewidth)+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
+            rEmotions.joyous.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.joyous.eyebrow.leftobj.add(new Point(rF.center.x-rF.eyebrow.facewidth+(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
+            rEmotions.joyous.eyebrow.leftobj.add(new Point((rF.center.x-rF.eyebrow.facewidth)+(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
         rEmotions.joyous.eyebrow.rightobj = new Path();
-            rEmotions.joyous.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
-            rEmotions.joyous.eyebrow.rightobj.add(new Point(480+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
-            rEmotions.joyous.eyebrow.rightobj.add(new Point((480+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
+            rEmotions.joyous.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth, rF.eyebrow.faceheight-(rF.eyebrow.highY)-5));
+            rEmotions.joyous.eyebrow.rightobj.add(new Point(rF.center.x+rF.eyebrow.facewidth-(rF.eyebrow.width/2), rF.eyebrow.faceheight-(rF.eyebrow.highY)-20));
+            rEmotions.joyous.eyebrow.rightobj.add(new Point((rF.center.x+rF.eyebrow.facewidth)-(rF.eyebrow.width), rF.eyebrow.faceheight-(rF.eyebrow.highY)-15));
 //***** SAD ******* //
     rEmotions.sad = {
         mouth: {},
@@ -324,6 +274,55 @@ rEmotions  = {};
             rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
 //************************* rEmotions: EMOTION COORDINATE DEFINITIONS END ********************************//
 
+
+
+//************************* CALCULATOR FOR EYE MOVEMENT START ********************************************//
+calc = {};
+calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
+	var pi = Math.PI;
+	var bigTri = {};
+	var leftEyeTri = {};
+	var rightEyeTri = {};
+    var mult = 7;
+	// convert angle to radians
+	var angle = angleDeg*(pi/180);
+
+	// big triangle calculations
+	bigTri.hyp = distance;
+	bigTri.opp = bigTri.hyp * Math.sin(angle);
+
+	bigTri.adj = bigTri.hyp * Math.cos(angle);
+
+	// left eye triangle calculations
+	leftEyeTri.opp = bigTri.opp - eyegap;
+	leftEyeTri.adj = bigTri.adj;
+	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
+	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
+
+	// right eye triangle calculations
+	rightEyeTri.opp = bigTri.opp + eyegap;
+	rightEyeTri.adj = bigTri.adj;
+	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
+	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
+    //mock
+    leftEyeTri.move = leftEyeTri.move*3.779527564*mult;
+    rightEyeTri.move = rightEyeTri.move*3.779527564*mult;
+
+    //console.log(leftEyeTri.move);
+   // console.log(rightEyeTri.move);
+
+	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
+}
+//************************* CALCULATOR FOR EYE MOVEMENT START END ****************************************//
+
+
+
+
+
+
+
+
+
     tData = {};
     tData.start = new Point(rF.mouth.startX, rF.mouth.startY);
     tData.center = new Point(rF.mouth.startX+(rF.mouth.width/2), rF.mouth.startY);
@@ -387,13 +386,7 @@ rF.debug =  function(status) {
 
 
 
-    rF.status.emotion.visible = status;
-    rF.status.eyeData.visible = status;
-    rF.status.talking.visible = status;
-};
-rF.debug(false);
-
-    /*var path = new Path.Line([480,0], [480,700]);
+    var path = new Path.Line([480,0], [480,700]);
     path.strokeColor = 'black';
     var path2 = new Path.Line([330,0], [330,700]);
     path2.strokeColor = 'black';
@@ -402,71 +395,77 @@ rF.debug(false);
     var path4 = new Path.Line([430,0], [430,700]);
     path4.strokeColor = 'black';
     var path5 = new Path.Line([530,0], [530,700]);
-    path5.strokeColor = 'black';*/
+    path5.strokeColor = 'black';
+    
+    path.visible = status;
+    path2.visible = status;
+    path3.visible = status;
+    path4.visible = status;
+    path5.visible = status;
+
+    rF.status.emotion.visible = status;
+    rF.status.eyeData.visible = status;
+    rF.status.talking.visible = status;
+};
+
+
+rF.debug(false);
 
 
 
 
 
 
-var originF = rF;
 var destinationF = rF;
 var timer = 0;
-//var talking = false;
-var human = 'default';
 
 //************************* ANIMATION FRAME SECTION ******************************************************//
 function onFrame(event) {
     timer++;
-    //if (timer%70==0) {
-        //var rand = Math.round(Math.random()*5);
+
         switch(rF.currentEmotion){
             case "sad":
+            case "s":
                 destinationF = rEmotions.sad;
                 //console.log("FACE:sad");
                  rF.status.emotion.content = "FACE:sad";
             break;
             case "happy":
+            case "h":
                 destinationF = rEmotions.happy;
                 //console.log("FACE:happy");
                  rF.status.emotion.content = "FACE:happy";
             break;
             case "default":
+            case "d":
                 destinationF = rEmotions.default;
                 //console.log("FACE:default");
                  rF.status.emotion.content = "FACE:default";
             break;
             case "confused":
+            case "c":
                 destinationF = rEmotions.confused;
                 //console.log("FACE:confused");
                  rF.status.emotion.content = "FACE:confused";
             break;
             case "anticipation":
+            case "a":
                 destinationF = rEmotions.anticipation;
                 //console.log("FACE:confused");
                  rF.status.emotion.content = "FACE:anticipation";
             break;
             case "joyous":
+            case "j":
                 destinationF = rEmotions.joyous;
                 //console.log("FACE:confused");
                  rF.status.emotion.content = "FACE:joyous";
             break;
         }
 
-   // }
 
-    if (Math.round(timer/400)%2==1) {
-      //  talking = true;
-    } else {
-        talking = false;
-        rF.status.talking.content = 'Not Talking';
-    }
-
-
-
+//************************* MOUTH + TALKING ANIMATION **********************************************//
     if (!rF.motion.on || rF.motion.step != 0) {
         if (!rF.motion.on) {
-            //console.log("setting up transition");
         originFace = rF;
         destinationFace = destinationF;
         rF.motion.step = 0;
@@ -477,11 +476,7 @@ function onFrame(event) {
             var segment = rF.mouth.toplip.segments[i];
 
             if (rF.talkingState) {
-                //console.log(i+":"+talkGestures[][i]);
-                //console.log(talkGestures);
-                //
-                        rF.status.talking.content = 'Talking';
-
+                rF.status.talking.content = 'Talking';
                 tData.bubble.visible = true;
                 tData.bubble.talk.visible = true;
                 tData.bubble.talk2.visible = true;
@@ -495,16 +490,13 @@ function onFrame(event) {
                 tData.bubble.talk2.visible = false;
                 tData.bubble.talk3.visible = false;
                 tData.bubble.talk4.visible = false;
-
                 tData.bubble.visible = false;
                 var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/rF.motion.steptotal;
             }
-
             segment.point = segment.point + vectorB;
         }
         rF.mouth.toplip.smooth();
-
 
         if (rF.motion.step == rF.motion.steptotal) {
             rF.motion.on = false;
@@ -512,64 +504,62 @@ function onFrame(event) {
         }
         rF.motion.step++;
     }
-        for (var i = 0; i <= 2; i++) {
-            var leftsegment = rF.eyebrow.leftobj.segments[i];
-            var leftvector = destinationFace.eyebrow.leftobj.segments[i].point - originFace.eyebrow.leftobj.segments[i].point;
-            if (leftvector.length > 0.5) {
-                var vectorA = leftvector/rF.motion.steptotal;
-                leftsegment.point = leftsegment.point + vectorA;
-            } else {
-                leftsegment.point = destinationFace.eyebrow.leftobj.segments[i].point;
-            }
+//************************* MOUTH + TALKING ANIMATION END ******************************************//
 
-            var rightsegment = rF.eyebrow.rightobj.segments[i];
-            var rightvector = destinationFace.eyebrow.rightobj.segments[i].point - originFace.eyebrow.rightobj.segments[i].point;
-            if (rightvector.length > 0.5) {
+
+//************************* ANIMATION EYEBROW START ************************************************//
+    for (var i = 0; i <= 2; i++) {
+        var leftsegment = rF.eyebrow.leftobj.segments[i];
+        var leftvector = destinationFace.eyebrow.leftobj.segments[i].point - originFace.eyebrow.leftobj.segments[i].point;
+        if (leftvector.length > 0.5) {
+            var vectorA = leftvector/rF.motion.steptotal;
+            leftsegment.point = leftsegment.point + vectorA;
+        } else {
+            leftsegment.point = destinationFace.eyebrow.leftobj.segments[i].point;
+        }
+
+        var rightsegment = rF.eyebrow.rightobj.segments[i];
+        var rightvector = destinationFace.eyebrow.rightobj.segments[i].point - originFace.eyebrow.rightobj.segments[i].point;
+        if (rightvector.length > 0.5) {
             var vectorB = rightvector/rF.motion.steptotal;
             rightsegment.point = rightsegment.point + vectorB;
-            } else {
-                //console.log("occured on item"+i+"")
-                rightsegment.point = destinationFace.eyebrow.rightobj.segments[i].point;
-            }
-
-            //console.log(rightsegment.point);
-            //console.log(leftsegment.point);
-
-
+        } else {
+            rightsegment.point = destinationFace.eyebrow.rightobj.segments[i].point;
         }
-        rF.eyebrow.leftobj.smooth();
-        rF.eyebrow.rightobj.smooth();
+    }
+    rF.eyebrow.leftobj.smooth();
+    rF.eyebrow.rightobj.smooth();
+//************************* ANIMATION EYEBROW END ***************************************************//
 
-        // Blink logic
-        if (timer%500==1) {
-                rF.leftEye.socket.scale(1, 0.2);
-                rF.rightEye.socket.scale(1, 0.2);
-        } else if(timer%500==3) {
-                rF.leftEye.socket.scale(1, 5);
-                rF.rightEye.socket.scale(1, 5);
-        }
 
-     //       //console.log( rF.motion.step);
-     //       //console.log( rF.motion.on);
+//************************* ANIMATION BLINK START ***************************************************//
+    if (timer%500==1) {
+            rF.leftEye.socket.scale(1, 0.2);
+            rF.rightEye.socket.scale(1, 0.2);
+    } else if(timer%500==3) {
+            rF.leftEye.socket.scale(1, 5);
+            rF.rightEye.socket.scale(1, 5);
+    }
+//************************* ANIMATION BLINK END *****************************************************//
 
 //************************* ANIMATION PUPILS START **************************************************//
-       var leftPupil = rF.leftEye.pupil;
-            var leftPupilVector =   rF.leftEye.pupil.destination - rF.leftEye.pupil.position;
-            if (leftPupilVector.length > 0.5) {
-                var vectorA = leftPupilVector/7;
-                leftPupil.position =   leftPupil.position + vectorA;
-            } else {
-                rF.leftEye.pupil.position =  rF.leftEye.pupil.destination;
-            }
+   var leftPupil = rF.leftEye.pupil;
+        var leftPupilVector =   rF.leftEye.pupil.destination - rF.leftEye.pupil.position;
+        if (leftPupilVector.length > 0.5) {
+            var vectorA = leftPupilVector/7;
+            leftPupil.position =   leftPupil.position + vectorA;
+        } else {
+            rF.leftEye.pupil.position =  rF.leftEye.pupil.destination;
+        }
 
-       var rightPupil = rF.rightEye.pupil;
-            var rightPupilVector =   rF.rightEye.pupil.destination - rF.rightEye.pupil.position;
-            if (rightPupilVector.length > 0.5) {
-                var vectorA = rightPupilVector/7;
-                rightPupil.position =   rightPupil.position + vectorA;
-            } else {
-                rF.rightEye.pupil.position =  rF.rightEye.pupil.destination;
-            }
+   var rightPupil = rF.rightEye.pupil;
+        var rightPupilVector =   rF.rightEye.pupil.destination - rF.rightEye.pupil.position;
+        if (rightPupilVector.length > 0.5) {
+            var vectorA = rightPupilVector/7;
+            rightPupil.position =   rightPupil.position + vectorA;
+        } else {
+            rF.rightEye.pupil.position =  rF.rightEye.pupil.destination;
+        }
 
 
 //************************* ANIMATION PUPILS END **************************************************//

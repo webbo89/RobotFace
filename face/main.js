@@ -12,7 +12,6 @@ socket.on('message', function(data) {
 face.on('emotionchange', function (data) {
     console.log(data);
     rF.currentEmotion = data.emotion.replace(/(\r\n|\n|\r)/gm,"");
-    //console.log(data);
 });
 
 face.on('talking', function (data) {
@@ -23,7 +22,6 @@ face.on('talking', function (data) {
     } else {
         rF.talkingState = false;
     }
-    //console.log(data);
 });
 
 face.on('eyeUpdate', function (data) {
@@ -32,6 +30,7 @@ face.on('eyeUpdate', function (data) {
     //rF.eyes(eyeData[0], eyeData[1], eyeData[2]);
     var result = calc.EyeMovement(eyeData[0], eyeData[1], 3, 1.8);
     rF.eyeUpdate(result.lefteye,result.righteye);
+    rF.status.eyeData.content =  "d:"+eyeData[0]+" a:"+eyeData[1]+" h:"+eyeData[2];;
 
 });
 
@@ -42,7 +41,6 @@ face.on('debug', function (data) {
     } else {
         rF.debug(false);
     }
-    //console.log(data);
 });
 
 face.on('message', function (data) {
@@ -62,12 +60,3 @@ face.on('message', function (data) {
     tData.bubble.talk4.content = lines[3]||"";
 });
 
-/*
-<script>
-  var socket = io.connect('http://localhost:3000/face');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
-*/
