@@ -1,3 +1,35 @@
+// Eye movement calculation function
+function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
+	var pi = Math.PI;
+	var bigTri = {};
+	var leftEyeTri = {};
+	var rightEyeTri = {};
+
+	// convert angle to radians
+	var angle = angleDeg*(180/pi);
+
+	// big triangle calculations
+	bigTri.hyp = distance;
+	bigTri.opp = bigTri.hyp * Math.sin(angle);
+	bigTri.adj = bigTri.hye * Math.cos(angle);
+
+	// left eye triangle calculations
+	leftEyeTri.opp = bigTri.opp - eyegap;
+	leftEyeTri.adj = bigTri.opp;
+	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
+	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
+
+	// right eye triangle calculations
+	rightEyeTri.opp = bigTri.opp + eyegap;
+	rightEyeTri.adj = bigTri.opp;
+	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
+	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
+
+	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
+}
+
+console.log(calcEyeMovement(100, 20, 3, 0.18));
+
 // The amount of segment points we want to create:
 var amount = 5;
 
