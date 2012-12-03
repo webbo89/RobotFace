@@ -41,7 +41,7 @@ function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
 	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
 	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
 
-	return({"righteye" : rightEyeTri.move, "lefteye" : leftEyeTri.move});
+	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
 }
 
 console.log(calcEyeMovement(100, 20, 3, 0.18));
