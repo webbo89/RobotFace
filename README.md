@@ -16,3 +16,4 @@ List of commands
 - talking=[true,false]
 - debug=[true,false]
 - message=[any string text]
+- eyeData=x:y:z

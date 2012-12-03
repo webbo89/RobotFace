@@ -22,10 +22,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.40630576">
       <split-first>
         <leaf>
-          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="32" selection-start="286" selection-end="286" vertical-scroll-proportion="0.17400205">
+                <state line="10" column="17" selection-start="271" selection-end="271" vertical-scroll-proportion="0.17400205">
                   <folding />
                 </state>
               </provider>
@@ -53,7 +53,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
@@ -382,13 +382,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="19" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/face.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="400" column="38" selection-start="22939" selection-end="22939" vertical-scroll-proportion="0.0">
@@ -399,6 +392,13 @@
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="17" selection-start="271" selection-end="271" vertical-scroll-proportion="0.17400205">
           <folding />
         </state>
       </provider>
