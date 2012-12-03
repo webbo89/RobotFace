@@ -1,34 +1,42 @@
 // Eye movement calculation function
-function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
+calc = {};
+calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
 	var pi = Math.PI;
 	var bigTri = {};
 	var leftEyeTri = {};
 	var rightEyeTri = {};
-
+    var mult = 7;
 	// convert angle to radians
-	var angle = angleDeg*(180/pi);
+	var angle = angleDeg*(pi/180);
 
 	// big triangle calculations
 	bigTri.hyp = distance;
 	bigTri.opp = bigTri.hyp * Math.sin(angle);
-	bigTri.adj = bigTri.hye * Math.cos(angle);
+
+	bigTri.adj = bigTri.hyp * Math.cos(angle);
 
 	// left eye triangle calculations
 	leftEyeTri.opp = bigTri.opp - eyegap;
-	leftEyeTri.adj = bigTri.opp;
+	leftEyeTri.adj = bigTri.adj;
 	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
 	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
 
 	// right eye triangle calculations
 	rightEyeTri.opp = bigTri.opp + eyegap;
-	rightEyeTri.adj = bigTri.opp;
+	rightEyeTri.adj = bigTri.adj;
 	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
 	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
+    //mock
+    leftEyeTri.move = leftEyeTri.move*3.779527564*mult;
+    rightEyeTri.move = rightEyeTri.move*3.779527564*mult;
+
+    //console.log(leftEyeTri.move);
+   // console.log(rightEyeTri.move);
 
 	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
 }
 
-console.log(calcEyeMovement(100, 20, 3, 0.18));
+console.log(calc.EyeMovement(100, 20, 3, 1.8));
 
 // The amount of segment points we want to create:
 var amount = 5;
@@ -164,15 +172,20 @@ rF  = {};
         rF.leftEye.socket.style = rF.eyeStyle.circleStyle;
         rF.leftEye.pupil = new Path.Circle([400,150], 10);
         rF.leftEye.pupil.style = rF.pupilStyle.circleStyle;
-        rF.leftEye.pupil.destination  = new Point ([50,50]);
+        rF.leftEye.pupil.destination  = rF.leftEye.center;
     rF.rightEye  = {};
         rF.rightEye.center  = new Point ([560,150]);
         rF.rightEye.socket = new Path.Circle([560,150], 70);
         rF.rightEye.socket.style = rF.eyeStyle.circleStyle;
         rF.rightEye.pupil = new Path.Circle([560,150], 10);
         rF.rightEye.pupil.style = rF.pupilStyle.circleStyle;
-        rF.rightEye.pupil.destination  = new Point ([50,50]);
+        rF.rightEye.pupil.destination  = rF.rightEye.center;
 
+    rF.eyeUpdate  = function (leftEye, rightEye) {
+        rF.leftEye.pupil.destination  = rF.leftEye.center + new Point ([leftEye,0]);
+        rF.rightEye.pupil.destination  = rF.rightEye.center + new Point ([rightEye,0]);
+        console.log(leftEye);
+    };
 
     rF.selected = false;
 
@@ -534,19 +547,23 @@ function onFrame(event) {
 
 //************************* ANIMATION PUPILS START **************************************************//
        var leftPupil = rF.leftEye.pupil;
-            var test = new Point (10,10);
-            rF.leftEye.pupil.position =  rF.leftEye.pupil.position + test;
-      //  console.log(leftPupil.center + test);
-        console.log(rF.leftEye.pupil);
-             /*  var leftPupilVector = leftPupil.point -rF.leftEye.pupil.destination;
-        console.log(leftPupilVector);
-            if (leftPupilVector.length > 0.1) {
-                var vectorA = leftPupilVector/rF.motion.steptotal;
-                rF.leftEye.pupil.segments[0]  =  leftPupil.point + vectorA;
+            var leftPupilVector =   rF.leftEye.pupil.destination - rF.leftEye.pupil.position;
+            if (leftPupilVector.length > 0.5) {
+                var vectorA = leftPupilVector/7;
+                leftPupil.position =   leftPupil.position + vectorA;
             } else {
-                 rF.leftEye.pupil.segments[0]  =  rF.leftEye.center + rF.leftEye.pupil.destination;
+                rF.leftEye.pupil.position =  rF.leftEye.pupil.destination;
             }
-*/
+
+       var rightPupil = rF.rightEye.pupil;
+            var rightPupilVector =   rF.rightEye.pupil.destination - rF.rightEye.pupil.position;
+            if (rightPupilVector.length > 0.5) {
+                var vectorA = rightPupilVector/7;
+                rightPupil.position =   rightPupil.position + vectorA;
+            } else {
+                rF.rightEye.pupil.position =  rF.rightEye.pupil.destination;
+            }
+
 
 //************************* ANIMATION PUPILS END **************************************************//
 

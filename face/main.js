@@ -27,9 +27,11 @@ face.on('talking', function (data) {
 });
 
 face.on('eyeUpdate', function (data) {
-    console.log(data.eyeData);
+  //  console.log(data.eyeData);
     var eyeData = data.eyeData.replace(/(\r\n|\n|\r)/gm,"").split(":");
-    rF.eyes(eyeData[0], eyeData[1], eyeData[2]);
+    //rF.eyes(eyeData[0], eyeData[1], eyeData[2]);
+    var result = calc.EyeMovement(eyeData[0], eyeData[1], 3, 1.8);
+    rF.eyeUpdate(result.lefteye,result.righteye);
 
 });
 
