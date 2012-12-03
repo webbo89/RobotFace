@@ -44,10 +44,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="face.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="face.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/face.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="401" column="32" selection-start="22975" selection-end="22975" vertical-scroll-proportion="0.765609">
+                <state line="400" column="38" selection-start="22939" selection-end="22939" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
                   <folding />
                 </state>
               </provider>
@@ -75,6 +84,7 @@
         <option value="$PROJECT_DIR$/face/face.js" />
         <option value="$PROJECT_DIR$/node/app.js" />
         <option value="$PROJECT_DIR$/public/face.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -381,7 +391,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="401" column="32" selection-start="22975" selection-end="22975" vertical-scroll-proportion="0.765609">
+        <state line="400" column="38" selection-start="22939" selection-end="22939" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
           <folding />
         </state>
       </provider>
