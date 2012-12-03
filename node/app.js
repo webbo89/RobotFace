@@ -26,8 +26,8 @@ function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
 
 	// big triangle calculations
 	bigTri.hyp = distance;
-	bigTri.opp = bigTri.hyp * Math.sin(angleR);
-	bigTri.adj = bigTri.hye * Math.cos(angleR);
+	bigTri.opp = bigTri.hyp * Math.sin(angle);
+	bigTri.adj = bigTri.hye * Math.cos(angle);
 
 	// left eye triangle calculations
 	leftEyeTri.opp = bigTri.opp - eyegap;
@@ -43,6 +43,8 @@ function calcEyeMovement(distance, angleDeg, eyegap, eyerad){
 
 	return({"righteye" : rightEyeTri.move, "lefteye" : leftEyeTri.move});
 }
+
+console.log(calcEyeMovement(100, 20, 3, 0.18));
 
 process.stdin.on('data', function (CMDinsert) {
     CMDinsert = CMDinsert.replace(/(\r\n|\n|\r)/gm,"");
