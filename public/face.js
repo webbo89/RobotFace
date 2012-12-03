@@ -379,7 +379,16 @@ var talkGestures = new Array();
 
 var center = new Point(480, 80);
 
-
+    var path = new Path.Line([480,0], [480,700]);
+    path.strokeColor = 'black';
+    var path2 = new Path.Line([330,0], [330,700]);
+    path2.strokeColor = 'black';
+    var path3 = new Path.Line([630,0], [630,700]);
+    path3.strokeColor = 'black';
+    var path4 = new Path.Line([430,0], [430,700]);
+    path4.strokeColor = 'black';
+    var path5 = new Path.Line([530,0], [530,700]);
+    path5.strokeColor = 'black';
 
 //Selections for debug
 rF.debug =  function(status) {
@@ -394,23 +403,14 @@ rF.debug =  function(status) {
 
 
 
-    var path = new Path.Line([480,0], [480,700]);
-    path.strokeColor = 'black';
-    var path2 = new Path.Line([330,0], [330,700]);
-    path2.strokeColor = 'black';
-    var path3 = new Path.Line([630,0], [630,700]);
-    path3.strokeColor = 'black';
-    var path4 = new Path.Line([430,0], [430,700]);
-    path4.strokeColor = 'black';
-    var path5 = new Path.Line([530,0], [530,700]);
-    path5.strokeColor = 'black';
+
     
     path.visible = status;
     path2.visible = status;
     path3.visible = status;
     path4.visible = status;
     path5.visible = status;
-
+    console.log(path5.visible);
     rF.status.emotion.visible = status;
     rF.status.eyeData.visible = status;
     rF.status.talking.visible = status;

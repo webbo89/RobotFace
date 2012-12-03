@@ -22,16 +22,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.40630576">
       <split-first>
         <leaf>
-          <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/face/main.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="10" column="32" selection-start="286" selection-end="286" vertical-scroll-proportion="0.17400205">
@@ -47,25 +38,16 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="34" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0">
+                <state line="49" column="19" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="face.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/face/face.js">
+          <file leaf-file-name="face.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/public/face.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="279" column="33" selection-start="18103" selection-end="18103" vertical-scroll-proportion="0.017400205">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/face/main.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="11" selection-start="1030" selection-end="1037" vertical-scroll-proportion="0.0">
+                <state line="377" column="43" selection-start="22127" selection-end="22127" vertical-scroll-proportion="0.3480041">
                   <folding />
                 </state>
               </provider>
@@ -92,6 +74,7 @@
         <option value="$PROJECT_DIR$/face/main.js" />
         <option value="$PROJECT_DIR$/face/face.js" />
         <option value="$PROJECT_DIR$/node/app.js" />
+        <option value="$PROJECT_DIR$/public/face.js" />
       </list>
     </option>
   </component>
@@ -204,6 +187,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PaperJS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RobotFace" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="node" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -223,20 +220,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="node_modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PaperJS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RobotFace" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="face" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -375,9 +358,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/face/main.html">
+    <entry file="file://$PROJECT_DIR$/node/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
+        <state line="15" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -389,100 +372,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="33" selection-start="18103" selection-end="18103" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="11" selection-start="1030" selection-end="1037" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="40" selection-start="482" selection-end="486" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="32" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
+        <state line="49" column="19" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face/face.js">
+    <entry file="file://$PROJECT_DIR$/public/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="319" column="42" selection-start="19697" selection-end="19697" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="40" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="394" column="37" selection-start="21471" selection-end="21471" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="40" selection-start="231" selection-end="231" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="26" selection-start="14254" selection-end="14254" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="11" selection-start="1030" selection-end="1037" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face/face.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="33" selection-start="18103" selection-end="18103" vertical-scroll-proportion="0.017400205">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="32" selection-start="286" selection-end="286" vertical-scroll-proportion="0.17400205">
+        <state line="377" column="43" selection-start="22127" selection-end="22127" vertical-scroll-proportion="0.3480041">
           <folding />
         </state>
       </provider>
