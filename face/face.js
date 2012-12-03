@@ -4,6 +4,7 @@ rF  = {};
     rF.talkingState = false;
     rF.status = {};
     rF.center = new Point(480, 0);
+    rF.screen = { height: 0, depth: 0 }
 
     rF.mouth  = {};
         rF.mouth.points = 5;
@@ -33,6 +34,7 @@ rF  = {};
          };
 
     rF.eye = {}
+        rF.eye.exageration = 0.7;
         rF.eye.gap = 80;
         rF.eye.radius = 70;
         rF.eye.height = rF.center.y + 150;
@@ -133,7 +135,6 @@ rF  = {};
     rF.eyeUpdate  = function (leftEye, rightEye) {
         rF.leftEye.pupil.destination  = rF.leftEye.center + new Point ([leftEye,0]);
         rF.rightEye.pupil.destination  = rF.rightEye.center + new Point ([rightEye,0]);
-        console.log(leftEye);
     };
 
     rF.selected = false;
@@ -279,11 +280,20 @@ rEmotions  = {};
 //************************* CALCULATOR FOR EYE MOVEMENT START ********************************************//
 calc = {};
 calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
+    var cm2px = 37.79527564;
+    var px2cm = 1/cm2px;
+
+    //JW experimental using dynamic defaults
+    //rF.screen.depth
+    //rF.screen.height
+    eyegap = rF.eye.gap*px2cm;
+    eyerad = rF.eye.radius*px2cm;
+
 	var pi = Math.PI;
 	var bigTri = {};
 	var leftEyeTri = {};
 	var rightEyeTri = {};
-    var mult = 7;
+
 	// convert angle to radians
 	var angle = angleDeg*(pi/180);
 
@@ -295,21 +305,19 @@ calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
 
 	// left eye triangle calculations
 	leftEyeTri.opp = bigTri.opp - eyegap;
-	leftEyeTri.adj = bigTri.adj;
+	leftEyeTri.adj = bigTri.adj + rF.screen.depth;
 	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
 	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
 
 	// right eye triangle calculations
 	rightEyeTri.opp = bigTri.opp + eyegap;
-	rightEyeTri.adj = bigTri.adj;
+	rightEyeTri.adj = bigTri.adj + rF.screen.depth;
 	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
 	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
     //mock
-    leftEyeTri.move = leftEyeTri.move*3.779527564*mult;
-    rightEyeTri.move = rightEyeTri.move*3.779527564*mult;
+    leftEyeTri.move = leftEyeTri.move*cm2px*rF.eye.exageration;
+    rightEyeTri.move = rightEyeTri.move*cm2px*rF.eye.exageration;
 
-    //console.log(leftEyeTri.move);
-   // console.log(rightEyeTri.move);
 
 	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
 }
