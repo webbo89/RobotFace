@@ -26,6 +26,13 @@ face.on('talking', function (data) {
     //console.log(data);
 });
 
+face.on('eyeUpdate', function (data) {
+    console.log(data.eyeData);
+    var eyeData = data.eyeData.replace(/(\r\n|\n|\r)/gm,"").split(":");
+    rF.eyes(eyeData[0], eyeData[1], eyeData[2]);
+
+});
+
 face.on('debug', function (data) {
     console.log(data);
     if (data.debug.replace(/(\r\n|\n|\r)/gm,"")=="true") {

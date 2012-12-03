@@ -32,6 +32,14 @@ process.stdin.on('data', function (CMDinsert) {
                         face.emit('emotionchange', {emotion: command[1]})
                     console.log("emotion sent");
                 break;
+                case "eyeData":
+                case "eyedata":
+                case "eData":
+                case "edata":
+                case "ed":
+                        face.emit('eyeUpdate', {eyeData: command[1]})
+                    console.log("emotion sent");
+                break;
                 case "talking":
                 case "t":
                         face.emit('talking', {talking: command[1]})

@@ -16,6 +16,26 @@ mouth.style = {
 rF  = {};
     rF.currentEmotion = "default";
     rF.talkingState = false;
+    rF.status = {};
+
+// Intitialise
+    //*** STatUS Output info **//
+    rF.status.emotion = new PointText([50,50]);
+        rF.status.emotion.paragraphStyle.justification = 'left';
+        rF.status.emotion.characterStyle.fontSize = 20;
+        rF.status.emotion.fillColor = 'black';
+        rF.status.emotion.content = 'Not Started Emotions';
+    rF.status.talking = new PointText([50,100]);
+        rF.status.talking.paragraphStyle.justification = 'left';
+        rF.status.talking.characterStyle.fontSize = 20;
+        rF.status.talking.fillColor = 'black';
+        rF.status.talking.content = 'Not Talking';
+    rF.status.eyeData = new PointText([800,100]);
+        rF.status.eyeData.paragraphStyle.justification = 'left';
+        rF.status.eyeData.characterStyle.fontSize = 20;
+        rF.status.eyeData.fillColor = 'black';
+        rF.status.eyeData.content = 'No eye data';
+
     //rF.debug = true;
     rF.mouth  = {};
         rF.mouth.points = 5;
@@ -49,6 +69,14 @@ rF  = {};
 
         rF.nose.obj.closed = true;
         rF.nose.obj.smooth();
+
+    rF.eyes  = function(angle, distance, height) {
+        rF.eyes.angle  = angle;
+        rF.eyes.distance  = distance;
+        rF.eyes.height  = height;
+        rF.status.eyeData.content = "a:"+angle+" d:"+distance+" h:"+height;
+        };
+    rF.eyes(90, 5, 10);
 
         rF.eyebrow = {};
         rF.eyebrow.lowY = 20;
@@ -294,18 +322,6 @@ var talkGestures = new Array();
 
 var center = new Point(480, 80);
 
-// Intitialise
-    //*** STatUS Output info **//
-     rF.text = new PointText([50,50]);
-    rF.text.paragraphStyle.justification = 'left';
-    rF.text.characterStyle.fontSize = 20;
-    rF.text.fillColor = 'black';
-    rF.text.content = 'Not Started';
-     rF.text2 = new PointText([50,100]);
-    rF.text2.paragraphStyle.justification = 'left';
-    rF.text2.characterStyle.fontSize = 20;
-    rF.text2.fillColor = 'black';
-    rF.text2.content = 'Not Talking';
 
 
 //Selections for debug
@@ -321,8 +337,9 @@ rF.debug =  function(status) {
 
 
 
-    rF.text.visible = status;
-    rF.text2.visible = status;
+    rF.status.emotion.visible = status;
+    rF.status.eyeData.visible = status;
+    rF.status.talking.visible = status;
 };
 rF.debug(false);
 
@@ -357,32 +374,32 @@ function onFrame(event) {
             case "sad":
                 destinationF = rEmotions.sad;
                 //console.log("FACE:sad");
-                 rF.text.content = "FACE:sad";
+                 rF.status.emotion.content = "FACE:sad";
             break;
             case "happy":
                 destinationF = rEmotions.happy;
                 //console.log("FACE:happy");
-                 rF.text.content = "FACE:happy";
+                 rF.status.emotion.content = "FACE:happy";
             break;
             case "default":
                 destinationF = rEmotions.default;
                 //console.log("FACE:default");
-                 rF.text.content = "FACE:default";
+                 rF.status.emotion.content = "FACE:default";
             break;
             case "confused":
                 destinationF = rEmotions.confused;
                 //console.log("FACE:confused");
-                 rF.text.content = "FACE:confused";
+                 rF.status.emotion.content = "FACE:confused";
             break;
             case "anticipation":
                 destinationF = rEmotions.anticipation;
                 //console.log("FACE:confused");
-                 rF.text.content = "FACE:anticipation";
+                 rF.status.emotion.content = "FACE:anticipation";
             break;
             case "joyous":
                 destinationF = rEmotions.joyous;
                 //console.log("FACE:confused");
-                 rF.text.content = "FACE:joyous";
+                 rF.status.emotion.content = "FACE:joyous";
             break;
         }
 
@@ -392,7 +409,7 @@ function onFrame(event) {
       //  talking = true;
     } else {
         talking = false;
-        rF.text2.content = 'Not Talking';
+        rF.status.talking.content = 'Not Talking';
     }
 
 
@@ -413,7 +430,7 @@ function onFrame(event) {
                 //console.log(i+":"+talkGestures[][i]);
                 //console.log(talkGestures);
                 //
-                        rF.text2.content = 'Talking';
+                        rF.status.talking.content = 'Talking';
 
                 tData.bubble.visible = true;
                 tData.bubble.talk.visible = true;
@@ -423,7 +440,7 @@ function onFrame(event) {
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
-                rF.text2.content = 'Not Talking';
+                rF.status.talking.content = 'Not Talking';
                 tData.bubble.talk.visible = false;
                 tData.bubble.talk2.visible = false;
                 tData.bubble.talk3.visible = false;
