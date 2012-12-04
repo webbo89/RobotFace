@@ -22,10 +22,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.40630576">
       <split-first>
         <leaf>
-          <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="17" selection-start="271" selection-end="271" vertical-scroll-proportion="0.17400205">
+                <state line="127" column="9" selection-start="5311" selection-end="5311" vertical-scroll-proportion="0.78860104">
                   <folding />
                 </state>
               </provider>
@@ -38,7 +38,7 @@
           <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="49" column="19" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0">
+                <state line="9" column="61" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -47,16 +47,25 @@
           <file leaf-file-name="face.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/face.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="400" column="38" selection-start="22939" selection-end="22939" vertical-scroll-proportion="0.0">
+                <state line="285" column="38" selection-start="18312" selection-end="18312" vertical-scroll-proportion="-193.8">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/public/main.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="49" column="19" selection-start="1374" selection-end="1374" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
+                <state line="12" column="26" selection-start="523" selection-end="523" vertical-scroll-proportion="0.21161826">
                   <folding />
                 </state>
               </provider>
@@ -82,15 +91,15 @@
         <option value="$PROJECT_DIR$/face/main.html" />
         <option value="$PROJECT_DIR$/face/main.js" />
         <option value="$PROJECT_DIR$/face/face.js" />
-        <option value="$PROJECT_DIR$/node/app.js" />
+        <option value="$PROJECT_DIR$/public/main.js" />
         <option value="$PROJECT_DIR$/public/face.js" />
+        <option value="$PROJECT_DIR$/node/app.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1176" />
   </component>
@@ -292,13 +301,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="0" />
+    <frame x="-8" y="0" width="1936" height="1176" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.113864" sideWeight="0.670936" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.113864" sideWeight="0.670936" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906404" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -364,7 +373,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -384,21 +393,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/face.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="400" column="38" selection-start="22939" selection-end="22939" vertical-scroll-proportion="0.0">
+        <state line="285" column="38" selection-start="18312" selection-end="18312" vertical-scroll-proportion="-193.8">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="6" selection-start="383" selection-end="383" vertical-scroll-proportion="0.14107884">
+        <state line="49" column="19" selection-start="1374" selection-end="1374" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="271" selection-end="271" vertical-scroll-proportion="0.17400205">
+        <state line="9" column="61" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="26" selection-start="523" selection-end="523" vertical-scroll-proportion="0.21161826">
           <folding />
         </state>
       </provider>

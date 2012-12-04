@@ -16,7 +16,6 @@ face.on('emotionchange', function (data) {
 
 face.on('talking', function (data) {
     console.log(data);
-
     if (data.talking.replace(/(\r\n|\n|\r)/gm,"")=="true") {
         rF.talkingState = true;
     } else {
@@ -25,13 +24,12 @@ face.on('talking', function (data) {
 });
 
 face.on('eyeUpdate', function (data) {
-  //  console.log(data.eyeData);
+    console.log(data.eyeData);
     var eyeData = data.eyeData.replace(/(\r\n|\n|\r)/gm,"").split(":");
-    //rF.eyes(eyeData[0], eyeData[1], eyeData[2]);
-    var result = calc.EyeMovement(eyeData[0], eyeData[1], 3, 1.8);
-    rF.eyeUpdate(result.lefteye,result.righteye);
-    rF.status.eyeData.content =  "d:"+eyeData[0]+" a:"+eyeData[1]+" h:"+eyeData[2];;
+    rF.status.eyeData.content =  "x:"+eyeData[0]+" y:"+eyeData[1]+" z:"+eyeData[2];
 
+    var result = calc.EyeMovement(eyeData[0],eyeData[1],eyeData[2]);
+    rF.eyeUpdate(result);
 });
 
 face.on('debug', function (data) {
@@ -47,7 +45,7 @@ face.on('message', function (data) {
     console.log(data);
     //PaperJS doesn't seem to allow multiline textboxes so pretty terrible hack:
     var str = data.message.replace(/(\r\n|\n|\r)/gm,"=");
-    console.log(str);
+    console.log("message:",str);
     var brk = "=";
     var width = 16;
     var cut = false;

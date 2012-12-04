@@ -4,7 +4,7 @@ rF  = {};
     rF.talkingState = false;
     rF.status = {};
     rF.center = new Point(480, 0);
-    rF.screen = { height: 0, depth: 0 }
+    rF.screen = { zheight: 0, xdepth: 0 }
 
     rF.mouth  = {};
         rF.mouth.points = 5;
@@ -34,7 +34,7 @@ rF  = {};
          };
 
     rF.eye = {}
-        rF.eye.exageration = 0.7;
+        rF.eye.exageration = 0.6;
         rF.eye.gap = 80;
         rF.eye.radius = 70;
         rF.eye.height = rF.center.y + 150;
@@ -132,9 +132,9 @@ rF  = {};
         rF.rightEye.pupil.style = rF.eye.pupilStyle.circleStyle;
         rF.rightEye.pupil.destination  = rF.rightEye.center;
 
-    rF.eyeUpdate  = function (leftEye, rightEye) {
-        rF.leftEye.pupil.destination  = rF.leftEye.center + new Point ([leftEye,0]);
-        rF.rightEye.pupil.destination  = rF.rightEye.center + new Point ([rightEye,0]);
+    rF.eyeUpdate  = function (eyes) {
+        rF.leftEye.pupil.destination  = rF.leftEye.center + eyes.left;
+        rF.rightEye.pupil.destination  = rF.rightEye.center + eyes.right;
     };
 
     rF.selected = false;
@@ -279,66 +279,85 @@ rEmotions  = {};
 
 //************************* CALCULATOR FOR EYE MOVEMENT START ********************************************//
 calc = {};
-calc.EyeMovement = function (distance, angleDeg, eyegap, eyerad){
+calc.EyeMovement = function (x, y, z){
+    //All units described in CM and Radians
+    //X is + forward
+    //Y is + right
+    //Z is depth, + away from gravity.
+    var angleDeg = 20;
+    var distance = 100;
+
+    var object = {x:parseInt(x), y:parseInt(y), z:parseInt(z)};
+
     var cm2px = 37.79527564;
     var px2cm = 1/cm2px;
+	var pi = Math.PI;
 
     //JW experimental using dynamic defaults
-    //rF.screen.depth
-    //rF.screen.height
-    eyegap = rF.eye.gap*px2cm;
-    eyerad = rF.eye.radius*px2cm;
+    var eyegap = rF.eye.gap*px2cm;
+    var eyerad = rF.eye.radius*px2cm;
 
-	var pi = Math.PI;
-	var bigTri = {};
-	var leftEyeTri = {};
-	var rightEyeTri = {};
+    var Pupil = function(object, type) {
+        this.object = object;
+            if (this.object.x<10) {
+                this.object.x = 10;
+                console.log("forward distance from robot too close, x defaulted to 10cm away");
+            }
 
-	// convert angle to radians
-	var angle = angleDeg*(pi/180);
+        this.xDistance = 0;
+        this.type = type;
+        this.yDistance = 0;
+        this.yAngle = 0;
+        this.xAxisOffset = 0;
+    };
+    Pupil.prototype.process = function() {
+        this.xDistance = this.object.x + rF.screen.xdepth;
+        this.zDistance = this.object.z - rF.screen.zheight;
+        if (this.type=="left") {
+            this.yDistance = this.object.y - eyegap/2;
+        } else if (this.type=="right") {
+            this.yDistance = this.object.y + eyegap/2;
+        }
 
-	// big triangle calculations
-	bigTri.hyp = distance;
-	bigTri.opp = bigTri.hyp * Math.sin(angle);
+        this.yAngle = Math.atan(this.xDistance/this.yDistance);
+        if (this.object.y>0) {
+            this.xAxisOffset = cm2px * rF.eye.exageration * eyerad * Math.cos(this.yAngle);
+        } else {
+            this.xAxisOffset = -1* cm2px * rF.eye.exageration * eyerad * Math.cos(this.yAngle);
+        }
+        this.ObjHypotenuse = Math.sqrt(this.xDistance*this.xDistance + this.yDistance*this.yDistance);
 
-	bigTri.adj = bigTri.hyp * Math.cos(angle);
+        this.zAngle = Math.atan(this.ObjHypotenuse/this.zDistance);
 
-	// left eye triangle calculations
-	leftEyeTri.opp = bigTri.opp - eyegap;
-	leftEyeTri.adj = bigTri.adj + rF.screen.depth;
-	leftEyeTri.angle = Math.atan(leftEyeTri.opp/leftEyeTri.adj);
-	leftEyeTri.move = eyerad * Math.cos(leftEyeTri.angle);
-
-	// right eye triangle calculations
-	rightEyeTri.opp = bigTri.opp + eyegap;
-	rightEyeTri.adj = bigTri.adj + rF.screen.depth;
-	rightEyeTri.angle = Math.atan(rightEyeTri.opp/rightEyeTri.adj);
-	rightEyeTri.move = eyerad * Math.cos(rightEyeTri.angle);
-    //mock
-    leftEyeTri.move = leftEyeTri.move*cm2px*rF.eye.exageration;
-    rightEyeTri.move = rightEyeTri.move*cm2px*rF.eye.exageration;
+        if (this.object.z<0) {
+            this.yAxisOffset = cm2px * rF.eye.exageration * eyerad * Math.cos(this.zAngle);
+        } else {
+            this.yAxisOffset = -1* cm2px * rF.eye.exageration * eyerad * Math.cos(this.zAngle);
+        }
+    }
 
 
-	return({"lefteye" : leftEyeTri.move, "righteye" : rightEyeTri.move});
+    var lPupil = new Pupil(object, "left");
+    lPupil.process();
+
+    var rPupil = new Pupil(object, "right");
+    rPupil.process();
+
+    response = {};
+    response.left = new Point (lPupil.xAxisOffset,lPupil.yAxisOffset);
+    response.right = new Point (rPupil.xAxisOffset,rPupil.yAxisOffset);
+return(response);
 }
 //************************* CALCULATOR FOR EYE MOVEMENT START END ****************************************//
-
-
-
-
-
-
-
-
 
     tData = {};
     tData.start = new Point(rF.mouth.startX, rF.mouth.startY);
     tData.center = new Point(rF.mouth.startX+(rF.mouth.width/2), rF.mouth.startY);
 
-var talkGestures = new Array();
-    talkGestures[0] = new Array(new Point(tData.center+[-10,20]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-30]),new Point(tData.center+[+30,-30]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,20]));
-    talkGestures[1] = new Array(new Point(tData.center+[-10,10]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-15]),new Point(tData.center+[+30,-15]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,10]));
-    talkGestures[2] = new Array(new Point(tData.center+[-10,20]), new Point(tData.center+[-75,-10]),new Point(tData.center+[-40,-30]),new Point(tData.center+[+40,-30]),new Point(tData.center+[+75,-10]), new Point(tData.center+[+10,20]));
+var talkGestures = [];
+    talkGestures[0] = [new Point(tData.center+[-10,20]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-30]),new Point(tData.center+[+30,-30]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,20])];
+    talkGestures[1] = [new Point(tData.center+[-10,10]), new Point(tData.center+[-80,-10]),new Point(tData.center+[-30,-15]),new Point(tData.center+[+30,-15]),new Point(tData.center+[+80,-10]), new Point(tData.center+[+10,10])];
+    talkGestures[2] = [new Point(tData.center+[-10,20]), new Point(tData.center+[-75,-10]),new Point(tData.center+[-40,-30]),new Point(tData.center+[+40,-30]),new Point(tData.center+[+75,-10]), new Point(tData.center+[+10,20])];
 
     tData.bubble = new Path();
         tData.bubble.add(new Point([180,330]));
@@ -377,8 +396,6 @@ var talkGestures = new Array();
         tData.bubble.talk4.characterStyle = tData.bubble.talkstyle;
         tData.bubble.talk4.visible = false;
 
-var center = new Point(480, 80);
-
     var path = new Path.Line([480,0], [480,700]);
     path.strokeColor = 'black';
     var path2 = new Path.Line([330,0], [330,700]);
@@ -401,19 +418,16 @@ rF.debug =  function(status) {
     rF.eyebrow.leftobj.selected = status;
     rF.eyebrow.rightobj.selected = status;
 
+    rF.status.emotion.visible = status;
+    rF.status.eyeData.visible = status;
+    rF.status.talking.visible = status;
 
-
-
-    
+    status = false;//force the lines to remain invisible.
     path.visible = status;
     path2.visible = status;
     path3.visible = status;
     path4.visible = status;
     path5.visible = status;
-    console.log(path5.visible);
-    rF.status.emotion.visible = status;
-    rF.status.eyeData.visible = status;
-    rF.status.talking.visible = status;
 };
 
 

@@ -1,14 +1,14 @@
 var io = require('socket.io');
 var express = require('express');
-
 var app = express()
   , server = require('http').createServer(app)
   , io = io.listen(server);
 
+io.set('log level', 0);
+
 app.configure(function(){
     app.use(express.static(__dirname + "\\..\\" + 'public'));
 });
-console.log(__dirname+"\\..\\");
 server.listen(3000);
 
 io.sockets.on('connection', function (socket) {
@@ -67,63 +67,67 @@ process.stdin.on('data', function (CMDinsert) {
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "happy"});
-                        face.emit('eyeUpdate', {eyeData: "100:89:6"})
+                        face.emit('eyeUpdate', {eyeData: "20:0:0"})
                     console.log("Sent emotion:happy for 3 seconds");
                         },2*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "sad"});
-                        face.emit('eyeUpdate', {eyeData: "100:45:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:500:50"})
                     console.log("Sent emotion:sad for 3 seconds");
                         },4*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "joyous"});
-                        face.emit('eyeUpdate', {eyeData: "100:90:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:100:50"})
                     console.log("Sent emotion:joyous for 3 seconds");
                         },6*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "anticipation"});
-                        face.emit('eyeUpdate', {eyeData: "1000:80:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:0:200"})
                     console.log("Sent emotion:anticipation for 3 seconds");
                         },8*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "confused"});
-                        face.emit('eyeUpdate', {eyeData: "500:20:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:0:-100"})
                     console.log("Sent emotion:confused for 3 seconds");
                         },1*speed);
 
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "default"});
-                        face.emit('eyeUpdate', {eyeData: "100:20:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:-500:100"})
                     console.log("Sent emotion:default for 3 seconds");
                         },12*speed);
 
                     setTimeout(function() {
                         face.emit('message', {message: "hello! I'm in test mode..."})
-                        face.emit('eyeUpdate', {eyeData: "100:89:6"})
+                        face.emit('eyeUpdate', {eyeData: "500:0:0"})
                         face.emit('talking', {talking: "true"})
                     console.log("Sent talking for 3 seconds");
                         },14*speed);
+                    setTimeout(function() {
+                        face.emit('message', {message: "I can raise my eyebrows"})
+                        face.emit('emotionchange', {emotion: "happy"});
+                        face.emit('eyeUpdate', {eyeData: "500:0:0"})
+                        face.emit('talking', {talking: "true"})
+                    console.log("Sent more talking for 3 seconds");
+                        },16*speed);
                     setTimeout(function() {
                         face.emit('emotionchange', {emotion: "default"});
                         face.emit('talking', {talking: "false"})
                         face.emit('debug', {debug: "false"})
                     console.log("Sent emotion:default for 3 seconds");
 
-                        },16*speed);
+                        },18*speed);
 
                 break;
            }
     }
-        try {
-           // var input = JSON.parse(chunk);
-            // accidentally broke this line may require fixing
+    try {
         } catch (err) {
             console.log('error',err);
             io.sockets.emit('message', { message: chunk });
         }
-    //}
 });
