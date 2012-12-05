@@ -4,12 +4,12 @@ var app = express()
   , server = require('http').createServer(app)
   , io = io.listen(server);
 
-io.set('log level', 0);
+//io.set('log level', 0);
 
 app.configure(function(){
     app.use(express.static(__dirname + "\\..\\" + 'public'));
 });
-server.listen(3000);
+server.listen(8080);
 
 io.sockets.on('connection', function (socket) {
 });

@@ -1,5 +1,9 @@
-var socket = io.connect("http://localhost:3000");
-var face = io.connect("http://localhost:3000/face");
+console.log(window.location.href);
+console.log(document.domain);
+console.log(location.h);
+
+var socket = io.connect(window.location.href);
+var face = io.connect(window.location.href+"face");
 
 socket.on('connect', function() {
     console.log('Connected');
