@@ -499,11 +499,11 @@ function onFrame(event) {
 
             if (rF.talkingState) {
                 rF.status.talking.content = 'Talking';
-                tData.bubble.visible = true;
-                tData.bubble.talk.visible = true;
-                tData.bubble.talk2.visible = true;
-                tData.bubble.talk3.visible = true;
-                tData.bubble.talk4.visible = true;
+           //     tData.bubble.visible = true;
+           //     tData.bubble.talk.visible = true;
+          //      tData.bubble.talk2.visible = true;
+          //      tData.bubble.talk3.visible = true;
+          //      tData.bubble.talk4.visible = true;
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
