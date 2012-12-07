@@ -1,6 +1,7 @@
 //******************************** rF: ROBOT FACE DEFINITIONS ********************************************//
 rF  = {};
     rF.currentEmotion = "default";
+    rF.activeBubble = false;
     rF.talkingState = false;
     rF.status = {};
     rF.center = new Point(480, 0);
@@ -396,6 +397,7 @@ var talkGestures = [];
         tData.bubble.talk4.characterStyle = tData.bubble.talkstyle;
         tData.bubble.talk4.visible = false;
 
+
     var path = new Path.Line([480,0], [480,700]);
     path.strokeColor = 'black';
     var path2 = new Path.Line([330,0], [330,700]);
@@ -499,11 +501,19 @@ function onFrame(event) {
 
             if (rF.talkingState) {
                 rF.status.talking.content = 'Talking';
-           //     tData.bubble.visible = true;
-           //     tData.bubble.talk.visible = true;
-          //      tData.bubble.talk2.visible = true;
-          //      tData.bubble.talk3.visible = true;
-          //      tData.bubble.talk4.visible = true;
+					if (rF.activeBubble){
+						tData.bubble.visible = true;
+						tData.bubble.talk.visible = true;
+						tData.bubble.talk2.visible = true;
+						tData.bubble.talk3.visible = true;
+						tData.bubble.talk4.visible = true;
+					} else {
+						tData.bubble.talk.visible = false;
+						tData.bubble.talk2.visible = false;
+						tData.bubble.talk3.visible = false;
+						tData.bubble.talk4.visible = false;
+						tData.bubble.visible = false;
+					}
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
@@ -585,7 +595,6 @@ function onFrame(event) {
 
 
 //************************* ANIMATION PUPILS END **************************************************//
-
 
 
 
