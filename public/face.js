@@ -4,18 +4,18 @@ rF  = {};
     rF.activeBubble = false;
     rF.talkingState = false;
     rF.status = {};
-    rF.center = new Point(480, 0);
+    rF.center = new Point(640, 0);
     rF.screen = { zheight: 0, xdepth: 0 }
 
     rF.mouth  = {};
         rF.mouth.points = 5;
-        rF.mouth.width = 320;
-        rF.mouth.startY = rF.center.y + 390;
+        rF.mouth.width = 450;
+        rF.mouth.startY = rF.center.y + 530;
 
     rF.nose = {};
-        rF.nose = rF.center + new Point (0,250);
-        rF.nose.width = 15;
-        rF.nose.height = 20;
+        rF.nose = rF.center + new Point (0,400);
+        rF.nose.width = 40;
+        rF.nose.height = 40;
         rF.nose.style = {
             strokeColor: new GrayColor(0.8),
             strokeWidth: 30,
@@ -25,8 +25,8 @@ rF  = {};
     rF.eyebrow = {};
         rF.eyebrow.lowY = 20;
         rF.eyebrow.highY = 10;
-        rF.eyebrow.width = 100;
-        rF.eyebrow.facewidth = 150; //Half width
+        rF.eyebrow.width = 200;
+        rF.eyebrow.facewidth = 240; //Half width
         rF.eyebrow.faceheight = 70;
         rF.eyebrow.style = {
             strokeColor: new GrayColor(0.8),
@@ -36,9 +36,9 @@ rF  = {};
 
     rF.eye = {}
         rF.eye.exageration = 0.6;
-        rF.eye.gap = 80;
-        rF.eye.radius = 70;
-        rF.eye.height = rF.center.y + 150;
+        rF.eye.gap = 140;
+        rF.eye.radius = 100;
+        rF.eye.height = rF.center.y + 200;
         rF.eye.style = {
             circleStyle: {
                 fillColor: new RgbColor(1, 1, 1),
@@ -92,6 +92,7 @@ rF  = {};
         rF.nose.obj.style = rF.nose.style;
 
         rF.nose.obj.closed = true;
+        rF.nose.obj.fillColor = new GrayColor(0.8);
         rF.nose.obj.smooth();
 
 
@@ -247,11 +248,11 @@ rEmotions  = {};
                 rEmotions.confused.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY) );
         rEmotions.confused.eyebrow.leftobj = new Path();
             rEmotions.confused.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[0].point + [0,5]));
-            rEmotions.confused.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[1].point + [0,10]));
+            rEmotions.confused.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[1].point + [0,15]));
             rEmotions.confused.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[2].point + [0,5]));
         rEmotions.confused.eyebrow.rightobj = new Path();
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[0].point + [0,-5]));
-            rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-10]));
+            rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-20]));
             rEmotions.confused.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
 //*** ANTICIPATION *//
     rEmotions.anticipation = {
@@ -268,11 +269,11 @@ rEmotions  = {};
                 rEmotions.anticipation.mouth.toplip.add(new Point(rF.mouth.startX + 5*(rF.mouth.width/rF.mouth.points), rF.mouth.startY-rEmotions.anticipation.mouth.toplip.incr) );
         rEmotions.anticipation.eyebrow.leftobj = new Path();
             rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[0].point + [0,0]));
-            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[1].point + [0,5]));
-            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[2].point + [0,0]));
+            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[1].point + [0,10]));
+            rEmotions.anticipation.eyebrow.leftobj.add(new Point(rEmotions.default.eyebrow.leftobj.segments[2].point + [0,5]));
         rEmotions.anticipation.eyebrow.rightobj = new Path();
             rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[0].point + [0,-5]));
-            rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-20]));
+            rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[1].point + [0,-25]));
             rEmotions.anticipation.eyebrow.rightobj.add(new Point(rEmotions.default.eyebrow.rightobj.segments[2].point + [0,5]));
 //************************* rEmotions: EMOTION COORDINATE DEFINITIONS END ********************************//
 
