@@ -34,6 +34,8 @@ socket.on('disconnect', function() {
     tData.bubble.talk2.content = lines[1]||"";
     tData.bubble.talk3.content = lines[2]||"";
     tData.bubble.talk4.content = lines[3]||"";
+    tData.bubble.talk5.content = lines[4]||"";
+
     rF.talkingState = true;
 
 
@@ -97,5 +99,6 @@ face.on('message', function (data) {
     tData.bubble.talk2.content = lines[1]||"";
     tData.bubble.talk3.content = lines[2]||"";
     tData.bubble.talk4.content = lines[3]||"";
+    tData.bubble.talk5.content = lines[4]||"";
 });
 
