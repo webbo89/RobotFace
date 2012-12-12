@@ -80,6 +80,11 @@ face.on('message', function (data) {
     //PaperJS doesn't seem to allow multiline textboxes so pretty terrible hack:
     var str = data.message.replace(/(\r\n|\n|\r)/gm,"=");
     console.log("message:",str);
+	if (str == "") {
+		rF.activeBubble = false;
+	} else {
+		rF.activeBubble = true;
+	}
     var brk = "=";
     var width = 16;
     var cut = false;
