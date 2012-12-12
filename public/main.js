@@ -82,8 +82,10 @@ face.on('message', function (data) {
     console.log("message:",str);
 	if (str == "") {
 		rF.activeBubble = false;
+		console.log("bubble off");
 	} else {
 		rF.activeBubble = true;
+		console.log("bubble on");
 	}
     var brk = "=";
     var width = 16;

@@ -518,13 +518,19 @@ function onFrame(event) {
                 var vector = talkGestures[(Math.round(timer/10)%3)][i] - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/(rF.motion.steptotal/1.5);
             } else {
-                rF.status.talking.content = 'Not Talking';
-                tData.bubble.talk.visible = false;
-                tData.bubble.talk2.visible = false;
-                tData.bubble.talk3.visible = false;
-                tData.bubble.talk4.visible = false;
-                tData.bubble.visible = false;
-                var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
+					if (rF.activeBubble){
+						tData.bubble.visible = true;
+						tData.bubble.talk.visible = true;
+						tData.bubble.talk2.visible = true;
+						tData.bubble.talk3.visible = true;
+						tData.bubble.talk4.visible = true;
+					} else {
+						tData.bubble.talk.visible = false;
+						tData.bubble.talk2.visible = false;
+						tData.bubble.talk3.visible = false;
+						tData.bubble.talk4.visible = false;
+						tData.bubble.visible = false;
+					}                var vector = destinationFace.mouth.toplip.segments[i].point - originFace.mouth.toplip.segments[i].point;
                 var vectorB = vector/rF.motion.steptotal;
             }
             segment.point = segment.point + vectorB;
